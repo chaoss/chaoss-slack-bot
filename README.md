@@ -107,7 +107,7 @@ Go to github and copy the url of the main Chaoss Slack Bot repo
 - [Commit message style guidelines](https://commit.style/)
 - [No-nonsense Git reference](https://rogerdudler.github.io/git-guide/) (best to have a cursory understanding of Git before hand)
 
-### Python guides
+### Bolt and Testing guides
 - [Getting started with Bolt for JavaScript](https://slack.dev/bolt-js/tutorial/getting-started).
 - [Official Jest documentation](https://jestjs.io/docs/getting-started).
 - [Jest Tutorial for Beginners](https://www.valentinog.com/blog/jest/).
