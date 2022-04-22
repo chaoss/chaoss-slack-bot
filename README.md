@@ -6,8 +6,9 @@ This holds the code to the CHAOSS slack bot for newcomers to the project.  Built
 
 ## Bot Function
 
-- When a newcomer joins the team, Sends a message in a predefined channel asking them to introduce themselves.
-- Responds when a user says "hello".
+- When a newcomer joins the team, sends a message in a predefined channel asking them to introduce themselves.
+- When a newcomer joins the team, sends a list of options in the newcomer channel asking them to choose how they would like to contribute.
+- Responds when a user says "hello", "hey" or "hi".
 
 
 ## Contribution Guide
