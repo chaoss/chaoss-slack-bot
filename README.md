@@ -6,8 +6,8 @@ This holds the code to the CHAOSS slack bot for newcomers to the project.  Built
 
 ## Bot Function
 
-- When a newcomer joins the team, sends a message in a predefined channel asking them to introduce themselves.
-- When a newcomer joins the team, sends a list of options in the newcomer channel asking them to choose how they would like to contribute.
+- When a user joins the team, sends a message in a predefined channel asking them to introduce themselves.
+- When a user joins the team, sends an interactive message via DM to determine what thy need to contribute and provide the relevant resources.
 - Responds when a user says "hello", "hey" or "hi".
 
 
@@ -107,10 +107,10 @@ Go to github and copy the url of the main Chaoss Slack Bot repo
 - [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
 - [Commit message style guidelines](https://commit.style/)
 - [No-nonsense Git reference](https://rogerdudler.github.io/git-guide/) (best to have a cursory understanding of Git before hand)
+- [A Complete Guide to DCO for Open Source Developers](https://www.secondstate.io/articles/dco/)
 
 ### Bolt and Testing guides
 - [Getting started with Bolt for JavaScript](https://slack.dev/bolt-js/tutorial/getting-started).
+- [Slack API developer docs and guides](https://api.slack.com/docs).
 - [Official Jest documentation](https://jestjs.io/docs/getting-started).
 - [Jest Tutorial for Beginners](https://www.valentinog.com/blog/jest/).
-
-
