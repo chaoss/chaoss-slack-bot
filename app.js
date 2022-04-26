@@ -13,8 +13,7 @@ const app = new App({
 });
 
 // When a user joins the team, the bot sends a DM to the newcommer asking them how they would like to contribute
-
-app.event("team_joined", async ({ event, client, logger }) => {
+app.event("team_join", async ({ event, client, logger }) => {
   try {
     const result = await client.chat.postMessage({
       channel: event.user.id,
@@ -81,7 +80,7 @@ app.event("team_joined", async ({ event, client, logger }) => {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "Help with the Website.",
+            text: "*Help with the Website*",
           },
           accessory: {
             type: "button",
@@ -98,13 +97,13 @@ app.event("team_joined", async ({ event, client, logger }) => {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "Write or Edit Documentation.",
+            text: "*Write or Edit Documentation*",
           },
           accessory: {
             type: "button",
             text: {
               type: "plain_text",
-              text: "Click Me",
+              text: "Choose",
               emoji: true,
             },
             value: "docs",
@@ -115,13 +114,13 @@ app.event("team_joined", async ({ event, client, logger }) => {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "Contribute through a Mentorship Program.",
+            text: "*Contribute through a Mentorship Program*",
           },
           accessory: {
             type: "button",
             text: {
               type: "plain_text",
-              text: "Click Me",
+              text: "Choose",
               emoji: true,
             },
             value: "mentorship",
@@ -132,13 +131,13 @@ app.event("team_joined", async ({ event, client, logger }) => {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "Implement Metrics in my Project.",
+            text: "*Implement Metrics in my Project*",
           },
           accessory: {
             type: "button",
             text: {
               type: "plain_text",
-              text: "Click Me",
+              text: "Choose",
               emoji: true,
             },
             value: "implement_metrics",
@@ -149,13 +148,13 @@ app.event("team_joined", async ({ event, client, logger }) => {
           type: "section",
           text: {
             type: "mrkdwn",
-            text: "Learn About Something Else.",
+            text: "*Learn About Something Else*",
           },
           accessory: {
             type: "button",
             text: {
               type: "plain_text",
-              text: "Click Me",
+              text: "Choose",
               emoji: true,
             },
             value: "learn_something_else",
@@ -171,7 +170,7 @@ app.event("team_joined", async ({ event, client, logger }) => {
   }
 });
 
-// handle the button click  and shows the responses
+// handle the button click and show the responses
 app.action("develop", async ({ ack, say }) => {
   await ack();
   await say(
@@ -188,6 +187,7 @@ app.action("joinMeet", async ({ ack, say }) => {
     `
   );
 });
+
 app.action("contribute", async ({ ack, say }) => {
   // Acknowledge the action
   await ack();
@@ -196,6 +196,7 @@ app.action("contribute", async ({ ack, say }) => {
     `
   );
 });
+
 app.action("helpWithWebsite", async ({ ack, say }) => {
   await ack();
   await say(
@@ -203,6 +204,7 @@ app.action("helpWithWebsite", async ({ ack, say }) => {
     `
   );
 });
+
 app.action("docs", async ({ ack, say }) => {
   await ack();
   await say(
@@ -210,72 +212,71 @@ app.action("docs", async ({ ack, say }) => {
     `
   );
 });
-app.action("mentorship", async ({ ack, event }) => {
+
+app.action("mentorship", async ({ ack, say }) => {
   await ack();
-  try {
-    const result = await client.chat.postMessage({
-      channel: event.user.id,
-      blocks: [
-        {
-          type: "section",
-          text: {
-            type: "mrkdwn",
-            text: "Which mentorship program are you interested in?",
-          },
-          accessory: {
-            type: "radio_buttons",
-            action_id: "mentorship_selection",
-          },
+  await say({
+    // Choosing "Contribute through a mentorship program" triggers these nested radio buttons
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: "Which mentorship program are you interested in?",
+        },
+        accessory: {
+          type: "radio_buttons",
           options: [
             {
               text: {
                 type: "plain_text",
-                text: "Outreachy",
+                text: "*Outreachy*",
                 emoji: true,
               },
-              value: "Outreachy",
+              value: "outreachy",
             },
             {
               text: {
                 type: "plain_text",
-                text: "Google Summer of Code",
+                text: "*Google Summer of Code*",
                 emoji: true,
               },
-              value: "GSOC",
+              value: "gsoc",
             },
             {
               text: {
                 type: "plain_text",
-                text: "Google Season of Docs",
+                text: "*Google Season of Docs*",
                 emoji: true,
               },
-              value: "GSOD",
+              value: "gsod",
             },
           ],
+          action_id: "mentorship_selection",
         },
-      ],
-    });
-    logger.info(result);
-  } catch (error) {
-    logger.error(error);
-  }
+      },
+    ],
+    text: "Which mentorship program are you interested in?",
+  });
 });
 
+// this handler is for the nested radio buttons above
 app.action("mentorship_selection", async ({ action, ack, say }) => {
   await ack();
-  if (action.value === "Outreachy") {
+  console.log(action.selected_option.value);
+  if (action.selected_option.value === "outreachy") {
     await say(
       `The Outreachy Application period has ended for our participation in this program this year. You can still join the CHAOSS community in any of the ways found on our Participate page here: https://chaoss.community/participate.`
     );
   }
-  if (action.value === "GSOC") {
+  if (action.selected_option.value === "gsoc") {
     await say(
       `The Google Summer of Code Application period has ended for our participation in this program this year. You can still join the CHAOSS community in any of the ways found on our Participate page here: https://chaoss.community/participate.`
     );
   }
-  if(action.value === "GSOD") {
+  if (action.selected_option.value === "gsod") {
     await say(
-      `Welcome! If you haven’t yet, please join the <#C03C239HN1F> Slack channel  and take note of the pinned item at the top of the channel for more information about next steps.`
+      `Welcome! If you haven’t yet, please join the <#C03C239HN1F> Slack channel and take note of the pinned item at the top of the channel for more information about next steps.`
     );
   }
 });
@@ -295,30 +296,11 @@ app.action("learn_something_else", async ({ ack, say }) => {
 });
 
 app.message(/hello|hey|hi/i, async ({ message, say }) => {
-  await say({
-    blocks: [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `Welcome to CHAOSS Community <@${message.user}>!`,
-        },
-        accessory: {
-          type: "button",
-          text: {
-            type: "plain_text",
-            text: "Click Me",
-          },
-          action_id: "button_click",
-        },
-      },
-    ],
-    text: `Hey there <@${message.user}>!`,
-  });
+  await say(`Hello there <@${message.user}>!`);
 });
 
 // welcomes a new member to the newcomer channel
-const channelId = "C03AS6X6RJS";
+const channelId = "C0207C3RETX";
 
 // When a user joins the team, send a message in a predefined channel asking them to introduce themselves
 app.event("team_join", async ({ event, client, logger }) => {
