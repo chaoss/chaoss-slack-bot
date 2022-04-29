@@ -15,13 +15,13 @@ const app = new App({
 app.message('newbie', async ({ say, message, logger }) => {
   try {
     const result = await say({
-      channel: message.user.id,
+      channel: message.user,
       blocks: [
         {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `Welcome to *CHAOSS Community* <@${message.user.id}>! 🎉How would you like to get started? \n\nI want to..`,
+            text: `Welcome to *CHAOSS Community* <@${message.user}>! 🎉How would you like to get started? \n\nI want to..`,
           },
         },
         {
@@ -161,7 +161,7 @@ app.message('newbie', async ({ say, message, logger }) => {
           },
         },
       ],
-      text: `Welcome to the team, <@${message.user.id}>! 🎉.`,
+      text: `Welcome to the team, <@${message.user}>! 🎉.`,
     });
     logger.info(result);
   } catch (error) {
