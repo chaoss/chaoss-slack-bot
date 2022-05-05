@@ -4,6 +4,9 @@
 
 This holds the code to the CHAOSS slack bot for newcomers to the project.  Built with  [Bolt for JavaScript](https://slack.dev/bolt-js/concepts).
 
+## Documentation
+[CHAOSS Slack Bot Docs](https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit?usp=sharing)
+
 ## Bot Function
 
 - When a user joins the team, sends a message in a predefined channel asking them to introduce themselves.
@@ -16,11 +19,13 @@ This holds the code to the CHAOSS slack bot for newcomers to the project.  Built
 We love to pull requests from everyone! We follow the standard Git workflow of `fork -> change -> pull request -> merge -> update fork -> change ... (repeat forever)`. If you are new to open source, we recommend GitHub's excellent guide on "[How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)". In addition, please feel free to reach out to any of the maintainers or other community members if you are struggling; we are here to help you learn!
 
 ### Opening an issue
-If you're experiencing an issue with Augur or have a question you'd like help answering, please feel free to open an [issue](https://github.com/chaoss/chaoss-slack-bot/issues). To help us prevent duplicates, we kindly ask that you briefly search for your problem or question in our [issues](https://github.com/chaoss/chaoss-slack-bot/issues) before opening a new one.
+If you're experiencing an issue with CHAOSS Slack Bot or have a question you'd like help answering, please feel free to open an [issue](https://github.com/chaoss/chaoss-slack-bot/issues). To help us prevent duplicates, we kindly ask that you briefly search for your problem or question in our [issues](https://github.com/chaoss/chaoss-slack-bot/issues) before opening a new one.
 
-Please note that if you open a bug report and your issue does not follow our template, we cannot help you until you have provided us all the relevant information in that format. Respectfully, we do not have the time to try and recreate an error given with minimal or no context, so by providing this information you are helping us help you! You will see this template when you open an issue; click on "Bug Report" and it will be populated with descriptions of what to put in each section. Replace the descriptions with your comments to the best of your ability, and please include screenshots and error logs if applicable.
+Please note that if you open a bug report, we cannot help you until you have provided us with all the relevant information. Respectfully, we do not have the time to try and recreate an error given with minimal or no context, so by providing this information you are helping us help you! Provide descriptions to the best of your ability, and please include screenshots and error logs if applicable.
 
 ### Contributing to the source code
+Please refer to the [documentation](https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit?usp=sharing) for the complete guide on getting started with Bolt.
+
 1. Fork this repo, and then clone it:
 ```bash
 $ git clone https://github.com/chaoss/chaoss-slack-bot.git
@@ -29,7 +34,6 @@ $ git remote add upstream https://github.com/chaoss/chaoss-slack-bot.git
 ```
 
 2. Install dependencies `npm install` or `yarn add`.
-   b. Use the .env.example template to create your .env file.
 
 3. Create a new branch
 ```bash
@@ -43,7 +47,7 @@ $ git add .
 $ git commit -s -m "descriptive commit message"
 $ git push -u origin my-new-branch
 ```
-6. Then, [submit a pull request](https://github.com/chaoss/augur/compare).
+6. Submit a pull request.
 
 At this point, you're waiting on us. We like to at least comment on pull requests
 within three business days (and, typically, one business day). Once one of our maintainers has had a chance to review your PR, we will either mark it as "needs review" and provide specific feedback on your changes, or we will go ahead and complete the pull request.
@@ -109,8 +113,10 @@ Go to github and copy the url of the main Chaoss Slack Bot repo
 - [No-nonsense Git reference](https://rogerdudler.github.io/git-guide/) (best to have a cursory understanding of Git before hand)
 - [A Complete Guide to DCO for Open Source Developers](https://www.secondstate.io/articles/dco/)
 
-### Bolt and Testing guides
+### Slack API & Bolt for JavaScript
 - [Getting started with Bolt for JavaScript](https://slack.dev/bolt-js/tutorial/getting-started).
 - [Slack API developer docs and guides](https://api.slack.com/docs).
+
+### Testing
 - [Official Jest documentation](https://jestjs.io/docs/getting-started).
 - [Jest Tutorial for Beginners](https://www.valentinog.com/blog/jest/).
