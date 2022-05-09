@@ -52,19 +52,33 @@ describe('test', () => {
   });
   it('test the mentorship action', async () => {
     await app.start();
-    expect(app.action).toBeCalledWith('mentorship_selection', expect.any(Function));
+    expect(app.action).toBeCalledWith(
+      'mentorship_selection',
+      expect.any(Function)
+    );
   });
   it('test the implement_metrics action', async () => {
     await app.start();
-    expect(app.action).toBeCalledWith('implement_metrics', expect.any(Function));
+    expect(app.action).toBeCalledWith(
+      'implement_metrics',
+      expect.any(Function)
+    );
   });
   it('test the learn_something_else action', async () => {
     await app.start();
-    expect(app.action).toBeCalledWith('learn_something_else', expect.any(Function));
+    expect(app.action).toBeCalledWith(
+      'learn_something_else',
+      expect.any(Function)
+    );
   });
 
   it('test the message method', async () => {
     await app.start();
     expect(app.message).toBeCalledWith(/hello|hey|hi/i, expect.any(Function));
+  });
+
+  it('test the general DM method', async () => {
+    await app.start();
+    expect(app.message).toBeCalledWith('intro-CHAOSS', expect.any(Function));
   });
 });
