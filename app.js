@@ -743,7 +743,8 @@ app.event('team_join', async ({ event, client, logger }) => {
 app.action('develop', async ({ ack, say }) => {
   await ack();
   await say(
-    `There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://handbook.chaoss.community/community-handbook/community-initiatives/working-groups> and the metrics are developed during our Working Group meetings.
+    `You clicked *Develop Metrics*\n
+    There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://handbook.chaoss.community/community-handbook/community-initiatives/working-groups> and the metrics are developed during our Working Group meetings.
     `
   );
 });
@@ -752,7 +753,8 @@ app.action('joinMeet', async ({ ack, say }) => {
   // Acknowledge the action
   await ack();
   await say(
-    `All CHAOSS meetings are open to everyone, and they happen virtually at  <https://zoom.us/my/chaoss> We recommend a good first meeting is our Weekly Community Call (Every Tuesday at 11:00 am US Central/Chicago time) but you can see a calendar of all our meetings at https://chaoss.community/participate.
+    `You clicked *Join Meeting*\n
+    All CHAOSS meetings are open to everyone, and they happen virtually at  <https://zoom.us/my/chaoss> We recommend a good first meeting is our Weekly Community Call (Every Tuesday at 11:00 am US Central/Chicago time) but you can see a calendar of all our meetings at https://chaoss.community/participate.
     `
   );
 });
@@ -761,7 +763,8 @@ app.action('contribute', async ({ ack, say }) => {
   // Acknowledge the action
   await ack();
   await say(
-    `You are welcome to contribute. Please see this documentation: https://handbook.chaoss.community/community-handbook/contributing/development.
+    `You clicked *Contribute or Review code*\n
+    You are welcome to contribute. Please see this documentation: https://handbook.chaoss.community/community-handbook/contributing/development.
     `
   );
 });
@@ -769,7 +772,8 @@ app.action('contribute', async ({ ack, say }) => {
 app.action('helpWithWebsite', async ({ ack, say }) => {
   await ack();
   await say(
-    `The first step is getting to know our community! You can connect with us in any of the ways described in our Participate page here: https://chaoss.community/participate.
+    `You clicked *Help with the Website*\n
+    The first step is getting to know our community! You can connect with us in any of the ways described in our Participate page here: https://chaoss.community/participate.
     `
   );
 });
@@ -777,7 +781,9 @@ app.action('helpWithWebsite', async ({ ack, say }) => {
 app.action('docs', async ({ ack, say }) => {
   await ack();
   await say(
-    `Please see this documentation: https://handbook.chaoss.community/community-handbook/contributing/documentation.
+    `
+    You clicked *Write or Edit Documentation*\n
+    Please see this documentation: https://handbook.chaoss.community/community-handbook/contributing/documentation.
     `
   );
 });
@@ -835,17 +841,20 @@ app.action('mentorship_selection', async ({ action, ack, say }) => {
   console.log(action.selected_option.value);
   if (action.selected_option.value === 'outreachy') {
     await say(
-      `The Outreachy Application period has ended for our participation in this program this year. You can still join the CHAOSS community in any of the ways found on our Participate page here: https://chaoss.community/participate.`
+      `You clicked *Outreachy*\n
+      The Outreachy Application period has ended for our participation in this program this year. You can still join the CHAOSS community in any of the ways found on our Participate page here: https://chaoss.community/participate.`
     );
   }
   if (action.selected_option.value === 'gsoc') {
     await say(
-      `The Google Summer of Code Application period has ended for our participation in this program this year. You can still join the CHAOSS community in any of the ways found on our Participate page here: https://chaoss.community/participate.`
+      `You clicked *Google Summer of Code*\n
+      The Google Summer of Code Application period has ended for our participation in this program this year. You can still join the CHAOSS community in any of the ways found on our Participate page here: https://chaoss.community/participate.`
     );
   }
   if (action.selected_option.value === 'gsod') {
     await say(
-      `Welcome! If you haven't yet, please join the <#C03C239HN1F> Slack channel and take note of the pinned item at the top of the channel for more information about next steps.`
+      `You clicked *Google Season of Docs*\n
+      Welcome! If you haven't yet, please join the <#C03C239HN1F> Slack channel and take note of the pinned item at the top of the channel for more information about next steps.`
     );
   }
 });
@@ -853,14 +862,16 @@ app.action('mentorship_selection', async ({ action, ack, say }) => {
 app.action('implement_metrics', async ({ ack, say }) => {
   await ack();
   await say(
-    `We encourage you to join one of our Working Groups for specific questions about implementing your metrics. You can read more about them here: https://handbook.chaoss.community/community-handbook/community-initiatives/working-groups.`
+    `You clicked *Implement Metrics*\n
+    We encourage you to join one of our Working Groups for specific questions about implementing your metrics. You can read more about them here: https://handbook.chaoss.community/community-handbook/community-initiatives/working-groups.`
   );
 });
 
 app.action('learn_something_else', async ({ ack, say }) => {
   await ack();
   await say(
-    `We encourage you to read through our Community Handbook: https://handbook.chaoss.community/community-handbook/, and if you still can't find what you're looking for, feel free to ask your question in our #newcomers slack channel.`
+    `You clicked *Learn About Something Else*\n
+    We encourage you to read through our Community Handbook: https://handbook.chaoss.community/community-handbook/, and if you still can't find what you're looking for, feel free to ask your question in our #newcomers slack channel.`
   );
 });
 
