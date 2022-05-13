@@ -311,140 +311,132 @@ app.event('member_joined_channel', async ({ event, client, logger }) => {
           },
         },
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*Develop Metrics*',
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Choose',
-              emoji: true,
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Develop Metrics',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'develop',
+              action_id: 'mem_develop',
             },
-
-            action_id: 'mem_develop',
-          },
+          ],
         },
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*Join a Meeting*',
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Choose',
-              emoji: true,
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Join a Meeting',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'joinMeet',
+              action_id: 'mem_joinMeet',
             },
-
-            action_id: 'mem_joinMeet',
-          },
+          ],
         },
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*Contribute or Review Code*',
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Choose',
-              emoji: true,
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Contribute or Review Code',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'contribute',
+              action_id: 'mem_contribute',
             },
-
-            action_id: 'mem_contribute',
-          },
+          ],
         },
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*Help with the Website*',
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Choose',
-              emoji: true,
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Help with the Website',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'website',
+              action_id: 'mem_helpWithWebsite',
             },
-            value: 'website',
-            action_id: 'mem_helpWithWebsite',
-          },
+          ],
         },
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*Write or Edit Documentation*',
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Choose',
-              emoji: true,
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Write or Edit Documentation',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'docs',
+              action_id: 'mem_docs',
             },
-            value: 'docs',
-            action_id: 'mem_docs',
-          },
+          ],
         },
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*Contribute through a Mentorship Program*',
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Choose',
-              emoji: true,
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Contribute through a Mentorship Program',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'mentorship',
+              action_id: 'mem_mentorship',
             },
-            value: 'mentorship',
-            action_id: 'mem_mentorship',
-          },
+          ],
         },
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*Implement Metrics in my Project*',
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Choose',
-              emoji: true,
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Implement Metrics in my Project',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'implement_metrics',
+              action_id: 'mem_implement_metrics',
             },
-            value: 'implement_metrics',
-            action_id: 'mem_implement_metrics',
-          },
+          ],
         },
         {
-          type: 'section',
-          text: {
-            type: 'mrkdwn',
-            text: '*Learn About Something Else*',
-          },
-          accessory: {
-            type: 'button',
-            text: {
-              type: 'plain_text',
-              text: 'Choose',
-              emoji: true,
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Learn About Something Else',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'learn_something_else',
+              action_id: 'mem_learn_something_else',
             },
-            value: 'learn_something_else',
-            action_id: 'mem_learn_something_else',
-          },
+          ],
         },
       ],
       text: `Welcome to the team, <@${event.user}>! 🎉.`,
