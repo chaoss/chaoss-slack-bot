@@ -13,7 +13,7 @@ const app = new App({
 });
 
 // ********************************NEWBIES*********/
-app.message('newbie', async ({ client, message, logger }) => {
+app.message(/newbie/i, async ({ client, message, logger }) => {
   try {
     const result = await client.chat.postMessage({
       channel: message.user,
