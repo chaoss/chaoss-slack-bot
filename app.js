@@ -925,7 +925,7 @@ app.event('team_join', async ({ event, client, logger }) => {
 });
 */
 // *************************************** DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT TO INTRODUCE THE BOT************/
-
+/*
 let usersStore = {};
 
 app.message('intro-CHAOSS', async ({ client, logger }) => {
@@ -957,7 +957,7 @@ function saveUsers(usersArray) {
     // console.log(userId);
   });
 }
-
+*/
 //************ */
 (async () => {
   // Start your app
