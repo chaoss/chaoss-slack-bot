@@ -13,9 +13,9 @@ const app = new App({
 });
 
 // ********************************NEWBIES*********/
-app.message('newbie', async ({ say, message, logger }) => {
+app.message('newbie', async ({ client, message, logger }) => {
   try {
-    const result = await say({
+    const result = await client.chat.postMessage({
       channel: message.user,
       blocks: [
         {
