@@ -17,7 +17,7 @@ For more information about this project, read the [CHAOSS Slack Bot Docs](https:
 - Can send a DM to all users in the workspace, triggered by the message “intro-CHAOSS”.
 
 ## Getting Started
-If you're interested in cloning our bot for your Slack workspace, you can use the guide [here](https://github.com/chaoss/chaoss-slack-bot/blob/main/GETTING_STARTED.md), or check out [Bolt for JavaScript](https://slack.dev/bolt-js/concepts).
+If you're interested in cloning our bot for your Slack workspace, you can follow the steps in the [CONTRIBUTING.md](https://github.com/chaoss/chaoss-slack-bot/blob/main/CONTRIBUTING.md) to setup, and [https://slack.dev/bolt-js/deployments/heroku](https://slack.dev/bolt-js/deployments/heroku) or [https://slack.dev/bolt-js/deployments/aws-lambda](https://slack.dev/bolt-js/deployments/aws-lambda) to deploy.
 
 ## Contributing
 
