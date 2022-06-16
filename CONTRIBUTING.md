@@ -23,9 +23,10 @@ $ git clone https://github.com/chaoss/chaoss-slack-bot.git
 $ cd chaoss-slack-bot
 $ git remote add upstream https://github.com/chaoss/chaoss-slack-bot.git
 ```
-2. Install dependencies ```$ npm install``` or ```$ yarn add```
 
-3. Follow the [development installation instructions]()
+2. Follow the [development setup instructions](https://github.com/chaoss/chaoss-slack-bot/blob/main/SETUP.md)
+
+3. Install dependencies ```$ npm install``` or ```$ yarn add```
 
 4. Create a new branch
 
@@ -92,6 +93,9 @@ $ git push origin master
 - [Commit message style guidelines](https://commit.style/)
 - [No-nonsense Git reference](https://rogerdudler.github.io/git-guide/) (best to have a cursory understanding of Git before hand)
 - [A Complete Guide to DCO for Open Source Developers](https://www.secondstate.io/articles/dco/)
+
+## CHAOSS Slack Bot
+- [CHAOSS Slack Bot documentation](https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit?usp=sharing)
 
 ## Slack API & Bolt for JavaScript
 - [Getting started with Bolt for JavaScript](https://slack.dev/bolt-js/tutorial/getting-started)
