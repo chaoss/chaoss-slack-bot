@@ -39,3 +39,6 @@ CHAOSS Slack Bot uses Socket Mode.
 - Scroll down to **Subscribe to Bot Events** and select the events you want your bot to listen to. CHAOSS Slack Bot currently subcribes to [these events](https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit#heading=h.vaz3oyzblsm7). The other available events are documented at [api.slack.com/events](api.slack.com/events).
 
 - Follow the rest of the instructions in the [CONTRIBUTING.md](https://github.com/chaoss/chaoss-slack-bot/blob/main/CONTRIBUTING.md). 
+
+# Attribution
+Adapted from [Getting started with Bolt for JavaScript](https://slack.dev/bolt-js/tutorial/getting-started).
