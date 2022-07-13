@@ -26,6 +26,14 @@ describe('test', () => {
     expect(app.event).toBeCalledWith('team_join', expect.any(Function));
   });
 
+  it('test the member_joined_channel event', async () => {
+    await app.start();
+    expect(app.event).toBeCalledWith(
+      'member_joined_channel',
+      expect.any(Function)
+    );
+  });
+
   it('test the develop metrics action', async () => {
     await app.start();
     expect(app.action).toBeCalledWith('develop', expect.any(Function));
@@ -72,13 +80,17 @@ describe('test', () => {
     );
   });
 
-  it('test the message method', async () => {
+  it('test the newbie message method', async () => {
     await app.start();
-    expect(app.message).toBeCalledWith(/hello|hey|hi/i, expect.any(Function));
+    expect(app.message).toBeCalledWith(/newbie/i, expect.any(Function));
+  });
+  it('test the outreachy prompt', async () => {
+    await app.start();
+    expect(app.message).toBeCalledWith(/outreachy/i, expect.any(Function));
   });
 
-  it('test the general DM method', async () => {
-    await app.start();
-    expect(app.message).toBeCalledWith('intro-CHAOSS', expect.any(Function));
-  });
+  // it('test the general DM method', async () => {
+  //   await app.start();
+  //   expect(app.message).toBeCalledWith('intro-CHAOSS', expect.any(Function));
+  // });
 });
