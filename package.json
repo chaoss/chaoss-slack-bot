@@ -2,13 +2,17 @@
   "name": "firstbolt",
   "version": "1.0.0",
   "description": "A bot built with bolt",
-  "main": "index.js",
+  "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",
     "test": "jest"
   },
   "author": "iyimide adegunloye",
+  "contributors": [
+    "Precious Abubakar <preciousdanabubakar@gmail.com> (http://thepda.tech)"
+  ],
   "license": "ISC",
   "dependencies": {
     "@slack/bolt": "^3.11.0",
