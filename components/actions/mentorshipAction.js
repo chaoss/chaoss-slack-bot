@@ -13,25 +13,22 @@ async function mentorship(say) {
           options: [
             {
               text: {
-                type: 'plain_text',
+                type: 'mrkdwn',
                 text: '*Outreachy*',
-                emoji: true,
               },
               value: 'outreachy',
             },
             {
               text: {
-                type: 'plain_text',
+                type: 'mrkdwn',
                 text: '*Google Summer of Code*',
-                emoji: true,
               },
               value: 'gsoc',
             },
             {
               text: {
-                type: 'plain_text',
+                type: 'mrkdwn',
                 text: '*Google Season of Docs*',
-                emoji: true,
               },
               value: 'gsod',
             },
