@@ -123,7 +123,7 @@ app.message('intro-CHAOSS', async ({ client, logger }) => {
     for (let i = 0; i < userId.length; i++) {
       await client.chat.postMessage({
         channel: userId[i],
-        text: `Hello there! We recently launched a community survey to get your feedback on how to make our community more welcoming and inclusive. If you have considered yourself part of the community, we would love you to share your thoughts and experiences by completing this survey.https://chaossproject.limesurvey.net/835156?lang=en
+        text: `Hello there! We recently launched a community survey to get your feedback on how to make our community more welcoming and inclusive. If you have considered yourself part of the community, we would love you to share your thoughts and experiences by completing this survey:https://chaossproject.limesurvey.net/835156?lang=en
 Thank you`,
       });
     }
