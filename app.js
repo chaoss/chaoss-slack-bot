@@ -111,7 +111,7 @@ app.message(/outreachy/i, async ({ message, say, logger }) => {
 //   await say(`Hello there <@${message.user}>!`);
 // });
 
-// *************************************** DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT TO INTRODUCE THE BOT************/
+// *******************************DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT TO INTRODUCE THE BOT************/
 
 let usersStore = {};
 
