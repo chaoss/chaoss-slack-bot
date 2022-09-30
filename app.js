@@ -99,7 +99,7 @@ app.event('team_join', async ({ event, client, logger }) => {
   joinTeam.joinTeamSlack(event, client, logger);
 });
 
-//*************************************************************** */
+//*********************************************************** */
 
 // *************Send message about outreachy**********/
 app.message(/outreachy/i, async ({ message, say, logger }) => {
