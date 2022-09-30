@@ -107,7 +107,7 @@ app.message(/outreachy/i, async ({ message, say, logger }) => {
 });
 
 // *******************************DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT TO INTRODUCE THE BOT************/
-
+/*
 let usersStore = {};
 
 app.message('survey-CHAOSS', async ({ client, logger }) => {
@@ -140,7 +140,7 @@ function saveUsers(usersArray) {
     // console.log(userId);
   });
 }
-
+*/
 //************ */
 (async () => {
   // Start your app
