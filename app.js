@@ -106,11 +106,6 @@ app.message(/outreachy/i, async ({ message, say, logger }) => {
   outreachyPrompt.outreachyMessage(message, say, logger);
 });
 
-//******************************************************* */
-// app.message(/hello|hey|hi/i, async ({ message, say }) => {
-//   await say(`Hello there <@${message.user}>!`);
-// });
-
 // *******************************DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT TO INTRODUCE THE BOT************/
 
 let usersStore = {};
