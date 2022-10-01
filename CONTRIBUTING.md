@@ -16,6 +16,9 @@ At this point, you're ready to make your changes! Feel free to ask for help; eve
 If you're experiencing an issue with CHAOSS Slack Bot or have a question you'd like help answering, please feel free to open an issue. To help us prevent duplicates, we kindly ask that you briefly search for your problem or question in our issues before opening a new one.
 Please note that if you open a bug report, we cannot help you until you have provided us with all the relevant information. Respectfully, we do not have the time to try and recreate an error given with minimal or no context, so by providing this information you are helping us help you! Provide descriptions to the best of your ability, and please include screenshots and error logs if applicable.
 
+## Fixing an issue
+If you would like to fix an existing issue, leave a comment on it to indicate. This is to avoid having several people unknowingly working on the same issue.
+
 ## Contributing to the source code
 1. Fork this repo, and then clone it
 ```
