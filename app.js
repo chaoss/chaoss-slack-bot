@@ -86,17 +86,12 @@ app.action('learn_something_else', async ({ ack, say }) => {
   theActions.learn_something_else(say);
 });
 
-// *****************PROJECTBOT CHANNEL FOR TESTING****************************/
-
-app.event('member_joined_channel', async ({ event, client, logger }) => {
-  memberJoinChannel.memberJoin(event, client, logger);
-});
-
 //****************************************** */
 
 // When a user joins the team, the bot sends a DM to the newcommer asking them how they would like to contribute
 app.event('team_join', async ({ event, client, logger }) => {
-  joinTeam.joinTeamSlack(event, client, logger);
+  joinTeam.joinTeamSlack(event, client, logger); // this is the function that sends the DM
+  memberJoinChannel.memberJoin(event, client, logger); // this is for the #projectbot channel
 });
 
 //*********************************************************** */

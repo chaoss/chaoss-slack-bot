@@ -1,14 +1,14 @@
 async function joinTeamSlack(event, client, logger) {
   try {
-    console.log(event);
+    console.log("join team: ",event);
     return await client.chat.postMessage({
-      channel: event.user,
+      channel: event.user.id,
       blocks: [
         {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `Welcome to *CHAOSS Community* <@${event.user}>! 🎉How would you like to get started? \n\nI want to..`,
+            text: `Welcome to *CHAOSS Community* <@${event.user.id}>! 🎉How would you like to get started? \n\nI want to..`,
           },
         },
         {
@@ -140,7 +140,7 @@ async function joinTeamSlack(event, client, logger) {
           ],
         },
       ],
-      text: `Welcome to the team, <@${event.user}>! 🎉.`,
+      text: `Welcome to the team, <@${event.user.id}>! 🎉.`,
     });
   } catch (error) {
     console.log(error);
