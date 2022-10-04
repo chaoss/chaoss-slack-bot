@@ -5,7 +5,7 @@
 This holds the code to the CHAOSS slack bot for newcomers to the project.  Built with  [Bolt for JavaScript](https://slack.dev/bolt-js/concepts). For an open source community to grow, supporting newcomers and providing them with the information they need to contribute is really important. CHAOSS Slack Bot aims to provide a solution to this problem. Thanks for checking us out!
 
 ## Documentation
-For more information about this project, read the [CHAOSS Slack Bot Docs](https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit?usp=sharing).
+For more information about this project, read the [CHAOSS Slack Bot Docs](https://github.com/chaoss/chaoss-slack-bot/wiki).
 
 ## Bot Functions
 
