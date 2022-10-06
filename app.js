@@ -5,6 +5,7 @@ const mentorshipAction = require('./components/actions/mentorshipAction');
 const mentorshipResponses = require('./components/actions/mentorshipResponses');
 
 const memberJoinChannel = require('./components/joinChannel');
+const joinChaossAfrica = require('./components/joinChaossAfrica')
 
 const outreachyPrompt = require('./components/outreachyPrompt');
 const joinTeam = require('./components/joinTeam');
@@ -95,6 +96,13 @@ app.event('team_join', async ({ event, client, logger }) => {
 });
 
 //*********************************************************** */
+
+// *******When a user join chaossafrica channel, the bot sends a welcome message and the goal of the community******//
+app.event('chaossafrica_join', async({ event, client, logger }) => {
+  joinChaossAfrica.joinChaossAfrica(event, client, logger)  //this is the function that send the message
+})
+
+// ************************************************************************************************//
 
 // *************Send message about outreachy**********/
 app.message(/outreachy/i, async ({ message, say, logger }) => {
