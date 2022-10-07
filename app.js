@@ -1,5 +1,6 @@
 const { App } = require('@slack/bolt');
 const newbie = require('./components/newbie');
+const chaossAfrica = require('./components/africa');
 const theActions = require('./components/actions/actionResponses');
 const mentorshipAction = require('./components/actions/mentorshipAction');
 const mentorshipResponses = require('./components/actions/mentorshipResponses');
@@ -26,6 +27,11 @@ const app = new App({
 //This responds to a member when they  type newbie in any channel where the bot is present
 app.message(/newbie/i, async ({ message, client, logger }) => {
   newbie.newHere(message, client, logger);
+});
+
+//This responds to a member when they  type africa in any channel where the bot is present
+app.message(/africa-info/i, async ({ message, client, logger }) => {
+  chaossAfrica.chaossAfrica(message, client, logger);
 });
 
 // handle the button click and show the responses
