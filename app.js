@@ -1,15 +1,15 @@
 const { App } = require('@slack/bolt');
 const newbie = require('./components/newbie');
-const chaossAfrica = require('./components/africa');
 const theActions = require('./components/actions/actionResponses');
 const mentorshipAction = require('./components/actions/mentorshipAction');
 const mentorshipResponses = require('./components/actions/mentorshipResponses');
-
-const memberJoinChannel = require('./components/joinChannel');
-const joinChaossAfrica = require('./components/joinChaossAfrica')
-
 const outreachyPrompt = require('./components/outreachyPrompt');
+
+const joinChaossAfrica = require('./components/joinChaossAfrica')
+const chaossAfrica = require('./components/africa');
+
 const joinTeam = require('./components/joinTeam');
+const memberJoinChannel = require('./components/joinChannel');
 
 const dotenv = require('dotenv');
 
