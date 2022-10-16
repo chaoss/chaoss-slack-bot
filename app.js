@@ -5,8 +5,8 @@ const mentorshipAction = require('./components/actions/mentorshipAction');
 const mentorshipResponses = require('./components/actions/mentorshipResponses');
 const outreachyPrompt = require('./components/outreachyPrompt');
 
-const joinChaossAfrica = require('./components/joinChaossAfrica')
-const chaossAfrica = require('./components/africa');
+const joinChaossAfrica = require('./components/chaossAfrica/joinChaossAfrica');
+const chaossAfrica = require('./components/chaossAfrica/africa');
 
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
