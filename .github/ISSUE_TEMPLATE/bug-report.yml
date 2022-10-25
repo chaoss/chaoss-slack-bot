@@ -1,5 +1,5 @@
 name: Bug Report
-description: Please file a bug report to help us improve the CHAOSS Bot
+description: Please file a bug report to help us improve the project
 title: "[Bug]: Short description of the problem"
 labels: ["bug"]
 
@@ -46,7 +46,11 @@ body:
     attributes:
       label: Steps to Reproduce the Behavior
       description: Please share with us a minimalistic template to reproduce the bug.
-      placeholder: e.g 1. Go to '...' 2. Click on '....' 3. Scroll down to '....' 4. See error
+      placeholder: |
+        1. In this environment...
+        2. With this config...
+        3. Run/Click on '....'
+        4. See error
     validations:
       required: true
   - type: textarea
@@ -69,25 +73,3 @@ body:
       options:
         - label: I agree to follow this project's Code of Conduct
           required: true
-
-# **Bug description**
-# Please explain what is wrong with the CHAOSS Slack Bot
-
-# **Your environment**
-# Please provide the following information:
-# - Operating System: [e.g. Windows 10, Ubuntu 18.04, macOS 10.14.6]
-
-# **Steps to reproduce the behavior**
-# Please share with us a minimalistic template to reproduce the bug.
-
-# **Expected behavior**
-# A clear and concise description of what you expected to happen.
-
-# **What went wrong?**
-# What happened instead? What error message did you get?
-
-# **Screenshots**
-# If applicable, add screenshots to help explain your problem.
-
-# **Additional context**
-# Add any other context about the problem here.
