@@ -2,7 +2,7 @@ blank_issues_enabled: false
 name: Bug Report
 description: Please file a bug report to help us improve the CHAOSS Bot
 title: "[Bug]: Short description of the problem"
-labels: ["bug"]:
+labels: ["bug"]
 
 body:
   - type: markdown
