@@ -1,21 +1,23 @@
+const constantData = require('./constants/constants.json');
+
 async function outreachy(say) {
+  let responseString = constantData.Outreachy.status ? constantData.Outreachy.activeStatement : constantData.Outreachy.notActiveStatement;
   return await say(
-    `You clicked *Outreachy*\n
-    The Outreachy Application period has ended for our participation in this program this year. You can still join the CHAOSS community in any of the ways found on our Participate page here: https://chaoss.community/participate.`
+    responseString
   );
 }
 
 async function gsoc(say) {
+  let responseString = constantData.GSoC.status ? constantData.GSoC.activeStatement : constantData.GSoC.notActiveStatement;
   return await say(
-    `You clicked *Google Summer of Code*\n
-    The Google Summer of Code Application period has ended for our participation in this program this year. You can still join the CHAOSS community in any of the ways found on our Participate page here: https://chaoss.community/participate.`
+    responseString
   );
 }
 
 async function gsod(say) {
+  let responseString = constantData.GSoD.status ? constantData.GSoD.activeStatement : constantData.GSoD.notActiveStatement;
   return await say(
-    `You clicked *Google Season of Docs*\n
-    Welcome! If you haven’t yet, please join the <#C03C239HN1F> Slack channel and take note of the pinned item at the top of the channel for more information about next steps.`
+    responseString
   );
 }
 
