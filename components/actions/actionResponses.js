@@ -1,7 +1,7 @@
 async function develop(say) {
   return await say(
     `You clicked *Develop Metrics* \n
-    There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://handbook.chaoss.community/community-handbook/community-initiatives/working-groups> and the metrics are developed during our Working Group meetings.
+    There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: https://chaoss.community/kb-chaoss-community/ and the metrics are developed during our Working Group meetings.
     `
   );
 }
@@ -17,7 +17,7 @@ async function joinMeet(say) {
 async function contribute(say) {
   return await say(
     `You clicked *Contribute or Review code*\n
-    You are welcome to contribute. Please see this documentation: https://handbook.chaoss.community/community-handbook/contributing/development.
+    You are welcome to contribute. Please see this documentation: https://chaoss.community/kb-chaoss-community/.
     `
   );
 }
@@ -32,7 +32,7 @@ async function helpWithWebsite(say) {
 async function docs(say) {
   return await say(
     `You clicked *Write or Edit Documentation*\n
-    Please see this documentation: https://handbook.chaoss.community/community-handbook/contributing/documentation.
+    Please see this documentation: https://chaoss.community/kb-chaoss-community/.
     `
   );
 }
@@ -40,14 +40,14 @@ async function docs(say) {
 async function implement_metrics(say) {
   return await say(
     `You clicked *Implement Metrics in my Project*\n
-    We encourage you to join one of our Working Groups for specific questions about implementing your metrics. You can read more about them here: https://handbook.chaoss.community/community-handbook/community-initiatives/working-groups.`
+    We encourage you to join one of our Working Groups for specific questions about implementing your metrics. You can read more about them here: https://chaoss.community/kb-chaoss-community/.`
   );
 }
 
 async function learn_something_else(say) {
   return await say(
     `You clicked *Learn About Something Else*\n
-    We encourage you to read through our Community Handbook: https://handbook.chaoss.community/community-handbook/, and if you still can't find what you're looking for, feel free to ask your question in our #newcomers slack channel.`
+    We encourage you to read through our Community Handbook: https://chaoss.community/kb-chaoss-community/, and if you still can't find what you're looking for, feel free to ask your question in our #newcomers slack channel.`
   );
 }
 
