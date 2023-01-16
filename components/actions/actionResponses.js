@@ -1,7 +1,7 @@
 async function develop(say) {
   return await say(
     `You clicked *Develop Metrics* \n
-    There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://chaoss.community/kb-chaoss-community/> and the metrics are developed during our Working Group meetings.
+    There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://chaoss.community/kbtopic/working-groups/> and the metrics are developed during our Working Group meetings.
     `
   );
 }
@@ -17,7 +17,7 @@ async function joinMeet(say) {
 async function contribute(say) {
   return await say(
     `You clicked *Contribute or Review code*\n
-    You are welcome to contribute. Please see this documentation: https://chaoss.community/kb-chaoss-community/.
+    You are welcome to contribute. Please see this documentation: https://chaoss.community/kb/development-contribution/.
     `
   );
 }
@@ -32,7 +32,7 @@ async function helpWithWebsite(say) {
 async function docs(say) {
   return await say(
     `You clicked *Write or Edit Documentation*\n
-    Please see this documentation: https://chaoss.community/kb-chaoss-community/.
+    Please see this documentation: https://chaoss.community/kb/documentation-contributions/.
     `
   );
 }
@@ -40,7 +40,7 @@ async function docs(say) {
 async function implement_metrics(say) {
   return await say(
     `You clicked *Implement Metrics in my Project*\n
-    We encourage you to join one of our Working Groups for specific questions about implementing your metrics. You can read more about them here: https://chaoss.community/kb-chaoss-community/.`
+    We encourage you to join one of our Working Groups for specific questions about implementing your metrics. You can read more about them here: https://chaoss.community/kbtopic/working-groups/.`
   );
 }
 
