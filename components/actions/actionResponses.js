@@ -1,11 +1,7 @@
 async function develop(say) {
   return await say(
     `You clicked *Develop Metrics* \n
-<<<<<<< HEAD
     There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://chaoss.community/kbtopic/working-groups/> and the metrics are developed during our Working Group meetings.
-=======
-    There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://chaoss.community/kb-chaoss-community/> and the metrics are developed during our Working Group meetings.
->>>>>>> 5af69e74a6bcf939e497277f7ed1d0d657f57726
     `
   );
 }
@@ -21,11 +17,7 @@ async function joinMeet(say) {
 async function contribute(say) {
   return await say(
     `You clicked *Contribute or Review code*\n
-<<<<<<< HEAD
     You are welcome to contribute. Please see this documentation: https://chaoss.community/kb/development-contribution/.
-=======
-    You are welcome to contribute. Please see this documentation: https://chaoss.community/kb-chaoss-community/.
->>>>>>> 5af69e74a6bcf939e497277f7ed1d0d657f57726
     `
   );
 }
@@ -40,11 +32,7 @@ async function helpWithWebsite(say) {
 async function docs(say) {
   return await say(
     `You clicked *Write or Edit Documentation*\n
-<<<<<<< HEAD
     Please see this documentation: https://chaoss.community/kb/documentation-contributions/.
-=======
-    Please see this documentation: https://chaoss.community/kb-chaoss-community/.
->>>>>>> 5af69e74a6bcf939e497277f7ed1d0d657f57726
     `
   );
 }
@@ -52,11 +40,7 @@ async function docs(say) {
 async function implement_metrics(say) {
   return await say(
     `You clicked *Implement Metrics in my Project*\n
-<<<<<<< HEAD
     We encourage you to join one of our Working Groups for specific questions about implementing your metrics. You can read more about them here: https://chaoss.community/kbtopic/working-groups/.`
-=======
-    We encourage you to join one of our Working Groups for specific questions about implementing your metrics. You can read more about them here: https://chaoss.community/kb-chaoss-community/.`
->>>>>>> 5af69e74a6bcf939e497277f7ed1d0d657f57726
   );
 }
 
