@@ -51,6 +51,13 @@ async function learn_something_else(say) {
   );
 }
 
+async function request_one_on_one_help(say) {
+  return await say(
+    `You clicked *Request 1:1 Help*\n
+    We encourage you to follow the steps on this page https://chaoss.community/kb-getting-started/ before you request a Tour Guide.`
+  );
+}
+
 module.exports = {
   develop,
   joinMeet,
@@ -59,4 +66,5 @@ module.exports = {
   helpWithWebsite,
   implement_metrics,
   learn_something_else,
+  request_one_on_one_help,
 };

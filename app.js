@@ -93,6 +93,15 @@ app.action('learn_something_else', async ({ ack, say }) => {
   theActions.learn_something_else(say);
 });
 
+app.action('request_one_on_one_help', async ({ ack,context, say }) => {
+  await ack();
+  theActions.request_one_on_one_help(say);
+  await app.client.chat.postMessage({
+    channel: 'private-channel-id',
+    text: `@${context.user.id} has requested 1:1 help from a tour guide.`
+  });
+});
+
 //****************************************** */
 
 // When a user joins the team, the bot sends a DM to the newcommer asking them how they would like to contribute

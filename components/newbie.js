@@ -138,6 +138,22 @@ async function newHere(message, client, logger) {
             },
           ],
         },
+        {
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Request 1:1 Help',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'request_one_on_one_help',
+              action_id: 'request_one_on_one_help',
+            },
+          ],
+        },
       ],
       text: `Welcome to the team, <@${message.user}>! 🎉.`,
     });
