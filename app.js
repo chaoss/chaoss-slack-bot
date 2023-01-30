@@ -88,6 +88,11 @@ app.action('implement_metrics', async ({ ack, say }) => {
   theActions.implement_metrics(say);
 });
 
+app.action('one_one_tour_guide', async ({ ack, say }) => {
+  await ack();
+  theActions.one_one_tour_guide(say);
+});
+
 app.action('learn_something_else', async ({ ack, say }) => {
   await ack();
   theActions.learn_something_else(say);
@@ -104,9 +109,9 @@ app.event('team_join', async ({ event, client, logger }) => {
 //*********************************************************** */
 
 // *******When a user join chaossafrica channel, the bot sends a welcome message and the goal of the community******//
-app.event('member_joined_channel', async({ event, client, logger }) => { 
-  joinChaossAfrica.joinChaossAfrica(event, client, logger) 
-})
+app.event('member_joined_channel', async ({ event, client, logger }) => {
+  joinChaossAfrica.joinChaossAfrica(event, client, logger);
+});
 
 // ************************************************************************************************//
 

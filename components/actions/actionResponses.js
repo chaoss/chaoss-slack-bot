@@ -44,6 +44,13 @@ async function implement_metrics(say) {
   );
 }
 
+async function one_one_tour_guide(say) {
+  return await say(
+    `You clicked *CHAOSS Tour Guides*\n
+    Before requesting for a Tour Guide, We would like you to visite the https://chaoss.community/kb-getting-started/ page.`
+  );
+}
+
 async function learn_something_else(say) {
   return await say(
     `You clicked *Learn About Something Else*\n
@@ -58,5 +65,6 @@ module.exports = {
   contribute,
   helpWithWebsite,
   implement_metrics,
+  one_one_tour_guide,
   learn_something_else,
 };

@@ -1,6 +1,6 @@
 async function joinTeamSlack(event, client, logger) {
   try {
-    console.log("join team: ",event);
+    console.log('join team: ', event);
     return await client.chat.postMessage({
       channel: event.user.id,
       blocks: [
@@ -120,6 +120,22 @@ async function joinTeamSlack(event, client, logger) {
               style: 'primary',
               value: 'implement_metrics',
               action_id: 'implement_metrics',
+            },
+          ],
+        },
+        {
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'CHAOSS Tour Guide',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'one_one_tour_guide',
+              action_id: 'one_one_tour_guide',
             },
           ],
         },

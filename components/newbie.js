@@ -129,6 +129,22 @@ async function newHere(message, client, logger) {
               type: 'button',
               text: {
                 type: 'plain_text',
+                text: 'CHAOSS Tour Guide',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'one_one_tour_guide',
+              action_id: 'one_one_tour_guide',
+            },
+          ],
+        },
+        {
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
                 text: 'Learn About Something Else',
                 emoji: true,
               },
