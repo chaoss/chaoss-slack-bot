@@ -21,4 +21,4 @@ If you're interested in cloning our bot for your Slack workspace, you can follow
 
 ## Contributing
 
-To contribute to CHAOSS Slack bot, please follow the guidelines found in our [CONTRIBUTING.md](https://github.com/chaoss/chaoss-slack-bot/blob/main/CONTRIBUTING.md) and our [Code of Conduct](https://github.com/chaoss/chaoss-slack-bot/blob/main/CODE_OF_CONDUCT.md). We love pull requests! We welcome contributions from everyone, whether it's your 1st or your 100th. If you get stuck, please feel free to [ask for help](https://github.com/chaoss/chaoss-slack-bot/issues/new)!
+To contribute to CHAOSS Slack bot, please follow the guidelines found in our [CONTRIBUTING.md](https://github.com/chaoss/chaoss-slack-bot/blob/main/CONTRIBUTING.md) and our [Code of Conduct](https://github.com/chaoss/.github/blob/main/CODE_OF_CONDUCT.md). We love pull requests! We welcome contributions from everyone, whether it's your 1st or your 100th. If you get stuck, please feel free to [ask for help](https://github.com/chaoss/chaoss-slack-bot/issues/new)!
