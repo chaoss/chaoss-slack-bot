@@ -1,7 +1,7 @@
 async function develop(say) {
   return await say(
     `You clicked *Develop Metrics* \n
-    There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://handbook.chaoss.community/community-handbook/community-initiatives/working-groups> and the metrics are developed during our Working Group meetings.
+    There are 5 Working Groups that develop metrics based on different aspects of open source community health: Risk, Value, Evolution, DEI, and Common.  More information about each of these groups can be found here: <https://handbook.chaoss.community/community-handbook/community-initiatives/working-groups>. The metrics are developed during our Working Group meetings.
     `
   );
 }
@@ -24,7 +24,7 @@ async function contribute(say) {
 
 async function helpWithWebsite(say) {
   return await say(
-    `You clicked *Help with the Website*\n first step is getting to know our community! You can connect with us in any of the ways described in our Participate page here: https://chaoss.community/kb-getting-started/.
+    `You clicked *Help with the Website*\n first step is getting to know our community! You can connect with us in any of the ways described in our Getting Started page here: https://chaoss.community/kb-getting-started/.
     `
   );
 }
