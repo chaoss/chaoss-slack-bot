@@ -51,6 +51,13 @@ async function learn_something_else(say) {
   );
 }
 
+async function faqs(say) {
+  return await say(
+    `You clicked *FAQs*\n
+    We encourage you to read through our Frequently Asked Questions: https://handbook.chaoss.community/community-handbook/about/general-faq, and if you still can't find what you're looking for, feel free to ask your question in our #newcomers slack channel.`
+  );
+}
+
 module.exports = {
   develop,
   joinMeet,
@@ -59,4 +66,5 @@ module.exports = {
   helpWithWebsite,
   implement_metrics,
   learn_something_else,
+  faqs,
 };
