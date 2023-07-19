@@ -93,6 +93,10 @@ app.action('learn_something_else', async ({ ack, say }) => {
   theActions.learn_something_else(say);
 });
 
+app.action('faqs', async ({ ack, say }) => {
+  await ack();
+  theActions.faqs(say);
+});
 //****************************************** */
 
 // When a user joins the team, the bot sends a DM to the newcommer asking them how they would like to contribute
