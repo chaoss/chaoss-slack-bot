@@ -66,5 +66,5 @@ module.exports = {
   helpWithWebsite,
   implement_metrics,
   learn_something_else,
-  faqs,
+  faqs
 };
