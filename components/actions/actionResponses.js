@@ -47,7 +47,16 @@ async function implement_metrics(say) {
 async function learn_something_else(say) {
   return await say(
     `You clicked *Learn About Something Else*\n
-    We encourage you to read through our Community Handbook: https://handbook.chaoss.community/, and if you still can't find what you're looking for, feel free to ask your question in our #newcomers slack channel.`
+    We encourage you to read through our Community Handbook: https://handbook.chaoss.community/, and if you still can't find what you're looking for, feel free to ask your question in our <#C0207C3RETX> slack channel.`
+
+  );
+}
+
+async function faqs(say) {
+  return await say(
+    `You clicked *FAQs*\n
+    We encourage you to read through our Frequently Asked Questions: https://handbook.chaoss.community/community-handbook/about/general-faq, and if you still can't find what you're looking for, feel free to ask your question in our <#C0207C3RETX> slack channel.`
+
   );
 }
 
@@ -59,4 +68,5 @@ module.exports = {
   helpWithWebsite,
   implement_metrics,
   learn_something_else,
+  faqs
 };
