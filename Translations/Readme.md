@@ -11,4 +11,4 @@ This is a vital document to guide you in participating as a translator in the CH
 - Commit Your Changes: Once you have completed the translation, commit your changes with a descriptive commit message.
 - Submit a Pull Request: Create a pull request from your branch to the main branch of this repository. In the pull request description, briefly explain the changes you've made and mention that it's a translation work.
 - Review and Feedback: Our team will review your pull request and provide feedback if needed. Please be open to making any necessary revisions.
-
+## Translation Guidelines:
