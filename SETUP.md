@@ -22,10 +22,11 @@ A comprehensive list of permission scopes is available at [api.slack.com/scopes]
     You’ll be led through Slack’s OAuth UI, where you should allow your app to be installed to your development workspace. See sample below.
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/be6977a7-ec87-4d42-b0fc-bcf09d04474c)
 
-    Click on 'Allow' to confirm the intallation was successful on the Slack platform.
+    Click on 'Allow' to confirm that the intallation was successful done on the Slack platform.
 
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/6fc1643c-53a8-4b02-b3a7-bb84f2dfc046)
 
+    The slack bot will appear on the side bar of your slack app
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/3eab21ff-2dbc-4640-81de-245123ac265a)
 
 *   Once you authorize the installation, you will be led to  **OAuth & Permissions** page and see a **Bot User OAuth Access Token**.
@@ -40,6 +41,7 @@ A comprehensive list of permission scopes is available at [api.slack.com/scopes]
 ```
 
 $ cd chaoss-slack-bot
+
 ```
 
 *   Copy your Signing Secret from the Basic Information page and then store it in a new environment variable.
