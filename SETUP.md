@@ -1,8 +1,10 @@
+# Create an App
+
 *   First, we recommend [creating a new workspace](https://slack.com/get-started#create) where you won’t disrupt real work getting done.
 
 *   [Create a Slack app](https://api.slack.com/apps/new) and install it to the new workspace you created.
 
-*   Click on  `Create App` button to go to the **Basic Information** page.
+*   Click on the `Create App` button to go to the **Basic Information** page.
     ![](https://slack.dev/bolt-js/assets/basic-information-page.png)
 
 # Tokens and installing app
@@ -10,16 +12,20 @@
 *   Navigate to the **OAuth & Permissions** on the left sidebar.
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/07be85b8-7b28-4691-aab6-7d847b35c18e)
 
-*   Scroll down to the **Bot Token Scopes** section. Click **Add an OAuth Scope**. CHAOSS Slack bot currently has these \[OAuth Scopes]
-    ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/ed6d3dfb-4831-4b43-8b09-15cd7f3445b2) ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/ff3dda77-f205-4e95-8694-9e3d16594c36)! (https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit#heading=h.v1ah7sirde2a) enabled, so enable those for full functionality of the bot. If you're adding a new function, you might need more permissions. See the set up for adding new functions below.
+*   Scroll down to the **Bot Token Scopes** section. Click **Add an OAuth Scope**.
+    ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/ed6d3dfb-4831-4b43-8b09-15cd7f3445b2) ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/ff3dda77-f205-4e95-8694-9e3d16594c36)! (https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit#heading=h.v1ah7sirde2a).  CHAOSS Slack bot currently has these \[OAuth Scopes] enabled, so enable those for full functionality of the bot. If you're adding a new function, you might need more permissions. See the set up for adding new functions below.
 
 A comprehensive list of permission scopes is available at [api.slack.com/scopes](https://api.slack.com/scopes).
 
 *   Scroll up to the top of the OAuth & Permissions page and click **Install App to Workspace**.
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/550938ed-48f4-4296-9d73-0a3431f30182)
-    You’ll be led through Slack’s OAuth UI, where you should allow your app to be installed to your development workspace.
+    You’ll be led through Slack’s OAuth UI, where you should allow your app to be installed to your development workspace. See sample below.
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/be6977a7-ec87-4d42-b0fc-bcf09d04474c)
+
+    Click on 'Allow' to confirm the intallation was successful on the Slack platform.
+
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/6fc1643c-53a8-4b02-b3a7-bb84f2dfc046)
+
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/3eab21ff-2dbc-4640-81de-245123ac265a)
 
 *   Once you authorize the installation, you will be led to  **OAuth & Permissions** page and see a **Bot User OAuth Access Token**.
@@ -31,25 +37,30 @@ A comprehensive list of permission scopes is available at [api.slack.com/scopes]
 
 *   Navigate to your project folder
 
-<!---->
+```
 
 $ cd chaoss-slack-bot
+```
 
 *   Copy your Signing Secret from the Basic Information page and then store it in a new environment variable.
 *   Copy your bot (xoxb) token from the OAuth & Permissions page and store it in another environment variable.
 
 **For Linux and macOS:**
 
+```
     $ export SLACK_SIGNING_SECRET=<your-signing-secret>
 
-<!---->
+```
 
+```
     $ export SLACK_BOT_TOKEN=xoxb-<your-bot-token>
+
+```
 
 **For Windows:**
 
-*   Create a new .env file in the root of your project.
-*   Copy the content(Signing Secret) of the  [.env.example](https://github.com/chaoss/chaoss-slack-bot/blob/main/.env.example) file and paste in the new .env file you created.
+*   Create a new  `.env ` file in the root of your project.
+*   Copy the content of the  [.env.example](https://github.com/chaoss/chaoss-slack-bot/blob/main/.env.example) file and paste in the new .env file you created.
 *   Insert your tokens into the quotes. Make sure you include the .env file in your [`.gitignore`](https://www.delftstack.com/howto/git/add-file-to-gitignore/) file, to avoid exposing your secret keys.
 
 # Setting up events
