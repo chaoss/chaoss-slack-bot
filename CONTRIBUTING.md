@@ -63,6 +63,20 @@ $ git config --global user.email johndoe@example.com
 
 Any pull requests containing commits that are not signed off will not be eligible for merge until the commits have been signed off.
 
+### How to Fix a Failed DCO Check
+Sometimes, you might forget to sign off your commits. We understand, but your pull request will fail the DCO check, and we will not be able to merge it. If this happens, here is how you can fix it:
+
+- To fix a failed DCO check, go to the pull request page and scroll down to the section that shows the successful and failed checks. It is located just above the new comment text area. 
+
+<img width="1437" alt="Screenshot 2023-10-10 at 1 31 32 PM" src="https://github.com/chaoss/chaoss-slack-bot/assets/71160347/c8dab20a-e6e9-4b17-82ab-4f54f9c7d42c">
+
+- Click on the DCO details, and follow the instructions to fix the problem.
+
+ <img width="1437" alt="Screenshot 2023-10-10 at 1 33 43 PM" src="https://github.com/chaoss/chaoss-slack-bot/assets/71160347/d6c04196-e686-42bd-be77-62bff80ce895">
+
+- You can also follow [this guide](https://www.secondstate.io/articles/dco/) for an alternative approach. 
+
+
 ## Keeping in sync with the Chaoss Slack Bot Repository
 Remember to sync your fork with the main branch regularly. To do this:
 Make sure to be in the root folder of the project and the branch should be master branch and type
