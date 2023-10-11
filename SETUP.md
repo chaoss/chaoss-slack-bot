@@ -13,7 +13,9 @@
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/07be85b8-7b28-4691-aab6-7d847b35c18e)
 
 *   Scroll down to the **Bot Token Scopes** section. Click **Add an OAuth Scope**.
-    ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/ed6d3dfb-4831-4b43-8b09-15cd7f3445b2) ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/ff3dda77-f205-4e95-8694-9e3d16594c36)! (https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit#heading=h.v1ah7sirde2a).  CHAOSS Slack bot currently has these \[OAuth Scopes] enabled, so enable those for full functionality of the bot. If you're adding a new function, you might need more permissions. See the set up for adding new functions below.
+    ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/ed6d3dfb-4831-4b43-8b09-15cd7f3445b2) ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/ff3dda77-f205-4e95-8694-9e3d16594c36)
+
+The bot currently has these [OAuth Scopes](https://github.com/chaoss/chaoss-slack-bot/wiki/Bot-Token-Scopes-&-Event-Subscriptions) enabled, so enable those for full functionality of the bot. If you're adding a new function, you might need more permissions. See the set up for adding new functions below.
 
 A comprehensive list of permission scopes is available at [api.slack.com/scopes](https://api.slack.com/scopes).
 
