@@ -1,6 +1,6 @@
-# [Informação básica](https://github.com/chaoss/chaoss-slack-bot/wiki/Basic-Information#basic-information)
+# [Informação básica](https://github.com/chaoss/chaoss-slack-bot/wiki/Informação-básica#Informação-básica)
 
-### [Funções do bot](https://github.com/chaoss/chaoss-slack-bot/wiki/Basic-Information#basic-information)
+### [Funções do bot](https://github.com/chaoss/chaoss-slack-bot/wiki/Funções-do-bot#Funções-do-bot)
 
 - Quando um usuário se junta à equipe, envia uma mensagem em um canal pré-definido pedindo que se apresentem.
 
