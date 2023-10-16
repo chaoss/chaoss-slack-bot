@@ -7,7 +7,7 @@ This is the link  to the Event Subscriptions to be translated.
 para bot CHAOSS Slack. Uma lista abrangente de escopos de permissão está disponível em [api.slack.com/scopes.](https://api.slack.com/scopes)
 
 > |OAuth de Escopo | Descrição
-> |------------|-----------
+> |------------|-----------|
 > [app_mentions:read](https://api.slack.com/scopes/app_mentions:read)|Visualize mensagens que mencionam diretamente @welcometochaoss nas conversas em que o aplicativo está
 >[channels:history](https://api.slack.com/scopes/channels:history)|Veja mensagens e outros conteúdos em canais públicos aos quais o Welcome-to-CHAOSS foi adicionado
 >[channels:join](https://api.slack.com/scopes/channels:join)|Junte-se a canais públicos em um workspace
