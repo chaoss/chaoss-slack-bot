@@ -1,4 +1,3 @@
-This is the link  to the Contribution Guide to be translated.
 [Contribution Guide](https://github.com/chaoss/chaoss-slack-bot/wiki/Contribution-Guide)
 
 # Guia de contribuição
@@ -37,7 +36,7 @@ $ git push -u origin my-new-branch
 ```
 6. Envie uma pull request. Neste ponto, você está esperando por nós. Gostamos de comentar pelo menos as solicitações pull request dentro de três dias úteis (e, normalmente, um dia útil). Assim que um de nossos mantenedores tiver a chance de revisar seu PR, iremos marcá-lo como "revisão necessária" e fornecer feedback específico sobre suas alterações ou prosseguiremos e concluiremos a solicitação pull request.
 
-## Signing-off em Commits
+## Adicione assinatura nos commits
 
 Para contribuir com este projeto, você deve concordar com o [Certificado de Origem do Desenvolvedor](https://developercertificate.org/) da [carta CHAOSS](https://chaoss.community/charter/#user-content-8-intellectual-property-policy) para cada commit que você fizer. O DCO é uma simples declaração de que você, como contribuinte, tem o direito legal de fazer a contribuição. Para indicar que você concorda com as contribuições do DCO, basta adicionar uma linha a cada uma de suas mensagens de commit do git:
 ```
