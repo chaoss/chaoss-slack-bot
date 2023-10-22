@@ -1,9 +1,8 @@
-This is the link  to the slack bot wiki basic information page to be translated.
 [Basic Information](https://github.com/chaoss/chaoss-slack-bot/wiki/Basic-Information)
 
-> ### Informação básica
+> ### Informações básica
 
-> #### Funções do bot
+> #### Funcionalidades do bot
 >
 > - Quando um usuário ingressa na equipe, envia uma mensagem em um canal predefinido solicitando que se apresente.
 > - Quando um usuário ingressa na equipe, envia uma mensagem interativa via DM para determinar como pretende contribuir e fornecer os recursos relevantes.
@@ -17,4 +16,3 @@ This is the link  to the slack bot wiki basic information page to be translated.
 > |Nome do Token | Escopo |
 > |--------------|---------------|
 > |welcome-token | connections:write|
-
