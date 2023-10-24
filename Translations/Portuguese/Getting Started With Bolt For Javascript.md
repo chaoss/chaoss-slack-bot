@@ -1,3 +1,0 @@
-This is the link  to the Getting Started With Bolt for JavaScript to be translated.
-[Getting Started With Bolt for JavaScript](https://github.com/chaoss/chaoss-slack-bot/wiki/Getting-Started-With-Bolt-for-JavaScript)
-
