@@ -7,7 +7,7 @@ para bot CHAOSS Slack. Uma lista abrangente de escopos de permissão está dispo
 
 > |OAuth de Escopo | Descrição|
 > |------------|-----------
-> [app_mentions:read](https://api.slack.com/scopes/app_mentions:read)|Visualize mensagens que mencionam diretamente @welcometochaoss nas conversas em que o aplicativo está
+>[app_mentions:read](https://api.slack.com/scopes/app_mentions:read)|Visualize mensagens que mencionam diretamente @welcometochaoss nas conversas em que o aplicativo está
 >[channels:history](https://api.slack.com/scopes/channels:history)|Veja mensagens e outros conteúdos em canais públicos aos quais o Welcome-to-CHAOSS foi adicionado
 >[channels:join](https://api.slack.com/scopes/channels:join)|Junte-se a canais públicos em um workspace
 >[channels:read](https://api.slack.com/scopes/channels:read)|Visualize informações básicas sobre canais públicos em um workspace
