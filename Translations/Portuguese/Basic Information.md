@@ -1,3 +1,4 @@
+
 [Basic Information](https://github.com/chaoss/chaoss-slack-bot/wiki/Basic-Information)
 
 > ### Informações básica
@@ -16,3 +17,5 @@
 > |Nome do Token | Escopo |
 > |--------------|---------------|
 > |welcome-token | connections:write|
+
+
