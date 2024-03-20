@@ -161,3 +161,8 @@ function saveUsers(usersArray) {
 
   console.log('⚡️ Bolt app is running!');
 })();
+
+app.message(async ({ message, say }) => {
+  await say(`i am repeat your message : ${message.text}`);
+});
+
