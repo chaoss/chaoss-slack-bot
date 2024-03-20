@@ -188,7 +188,7 @@ app.message(async ({ message, client, say }) => {
   const lowerer = message.text.toLowerCase();  
   const deleteCheck = deleteWords.some(deleteWords => lowerer.includes(deleteWords));
 
-  const warnWords = ['warny', 'warny2', 'patel', 'alsowarn'];  
+  const warnWords = ['warny', 'warny2', 'patel', 'alsowarn', 'bro', 'rawr'];  
   const warnCheck = warnWords.some(warnWords => lowerer.includes(warnWords));
   
   if (deleteCheck) {
