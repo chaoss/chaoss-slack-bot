@@ -163,6 +163,21 @@ function saveUsers(usersArray) {
 })();
 
 app.message(async ({ message, say }) => {
-  await say(`i am repeat your message : ${message.text}`);
+  const deleteWords = ['badword1', 'badword2', 'fuck', 'anotherbadword'];  
+  const lowerer = message.text.toLowerCase();  
+  const deleteCheck = deleteWords.some(deleteWords => lowerer.includes(deleteWords));
+
+  const warnWords = ['warny', 'warny2', 'patel', 'alsowarn'];  
+  const warnCheck = warnWords.some(warnWords => lowerer.includes(warnWords));
+  
+  if (deleteCheck) {
+    await say(`you made bad message..and i should delete this `);
+  } 
+  else if (warnCheck) {
+    await say(`you made warn message..and i should warn this `);
+  }
+  else {
+    await say(`this mesage him safe: ${message.text}`);
+  }
 });
 
