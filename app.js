@@ -162,7 +162,28 @@ function saveUsers(usersArray) {
   console.log('⚡️ Bolt app is running!');
 })();
 
-app.message(async ({ message, say }) => {
+async function deleteMessage(client, channel, ts, say) {
+  try {
+    const result = await client.chat.delete({
+      channel: channel,
+      ts: ts,
+    });
+    console.log(result);
+    console.log(`!! im delete bad msg !!`);
+  } catch (error) {
+    console.error(error);
+    // Handle specific error cases here, if needed
+    if (error.data && error.data.error === 'cant_delete_message') {
+      //await say(``);
+      console.log('!! im dont perm for delete !! ')
+    } else {
+      console.log(` delete err generic .`);
+    }
+  }
+}
+
+
+app.message(async ({ message, client, say }) => {
   const deleteWords = ['badword1', 'badword2', 'fuck', 'anotherbadword'];  
   const lowerer = message.text.toLowerCase();  
   const deleteCheck = deleteWords.some(deleteWords => lowerer.includes(deleteWords));
@@ -171,7 +192,8 @@ app.message(async ({ message, say }) => {
   const warnCheck = warnWords.some(warnWords => lowerer.includes(warnWords));
   
   if (deleteCheck) {
-    await say(`you made bad message..and i should delete this `);
+    //await say(`you made bad message..and i should delete this `);
+    await deleteMessage(client, message.channel, message.ts, say);
   } 
   else if (warnCheck) {
     await say(`you made warn message..and i should warn this `);
