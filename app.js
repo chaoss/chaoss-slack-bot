@@ -10,7 +10,7 @@ const chaossAfrica = require('./components/chaossAfrica/africa');
 
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
-
+const sendPrivateMessage = require('./components/chaossAfrica/privateMessage');
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -162,7 +162,7 @@ function saveUsers(usersArray) {
   console.log('⚡️ Bolt app is running!');
 })();
 
-app.message(async ({ message, say }) => {
+app.message(async ({ event, message, say }) => {
   const deleteWords = ['badword1', 'badword2', 'fuck', 'anotherbadword'];  
   const lowerer = message.text.toLowerCase();  
   const deleteCheck = deleteWords.some(deleteWords => lowerer.includes(deleteWords));
@@ -172,6 +172,7 @@ app.message(async ({ message, say }) => {
   
   if (deleteCheck) {
     await say(`you made bad message..and i should delete this `);
+    privateMessage.sendPrivateMessage("Do not send that", event, client);
   } 
   else if (warnCheck) {
     await say(`you made warn message..and i should warn this `);

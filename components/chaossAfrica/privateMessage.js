@@ -1,8 +1,4 @@
 async function sendPrivateMessage(message, event, client) {
-    const keyword = "fuck";
-
-    if (message.includes(keyword)) {
-        console.log("Sending private message to user: ", message);
 
         try {
             await client.chat.postMessage({
@@ -12,7 +8,7 @@ async function sendPrivateMessage(message, event, client) {
                         type: 'section',
                         text: {
                             type: 'mrkdwn',
-                            text: `Welcome to *CHAOSS Community* <@${event.user.id}>! 🎉 How would you like to get started? \n\nI want to..`,
+                            text: `do not say that <@${event.user.id}>!`,
                         },
                     }
                 ]
@@ -22,7 +18,5 @@ async function sendPrivateMessage(message, event, client) {
             console.error("Error sending private message:", error);
         }
     }
-}
-
 
  exports.sendPrivateMessage = sendPrivateMessage;
