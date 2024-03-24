@@ -10,8 +10,8 @@ const chaossAfrica = require('./components/chaossAfrica/africa');
 
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
-
 const dotenv = require('dotenv');
+
 
 dotenv.config();
 
@@ -23,6 +23,7 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   port: process.env.PORT || 3000,
 });
+
 
 // ********************************NEWBIES*********/
 //This responds to a member when they  type newbie in any channel where the bot is present
@@ -161,3 +162,68 @@ function saveUsers(usersArray) {
 
   console.log('⚡️ Bolt app is running!');
 })();
+
+async function deleteMessage(channel, ts) {
+  try {
+      const result = await app.client.chat.delete({
+          channel: channel,
+          ts: ts,
+          token: process.env.DELETE_TOKEN, // Use the admin (user) token for this operation
+      });
+      //console.log(result);
+      console.log("!! im delete bad msg !!");
+  } catch (error) {
+      console.error(error);
+      if (error.data && error.data.error === 'cant_delete_message') {
+          console.log('!! im dont perm for delete !!')
+          console.log('!! pls make sure im DELETE_TOKEN correctly !!')
+          console.log('!! user token should be workspace admin !!')
+          console.log('!! user token should not be bot token !!')
+          console.log('!! im dont perm for delete !!')
+      } else {
+          console.log("delete err generic.");
+      }
+  }
+}
+
+async function talksWithHim(userId, message) {
+  try {
+    const result = await app.client.chat.postMessage({
+      channel: userId,
+      text: message,
+    });
+    //console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+let alex;
+
+async function loadAlex() {
+  alex = await import('alex');
+}
+
+loadAlex().then(() => {
+  app.message(async ({ message, client, say }) => {
+    if (!message.text) {
+      return; 
+    }
+    
+    const user = message.user; 
+    const lowerer = message.text.toLowerCase(); 
+    const alexCheck = alex.text(lowerer).messages;
+  
+    if (alexCheck.length > 0) {
+      await deleteMessage(message.channel, message.ts);
+      alexCheck.forEach(message => {
+        console.log(message.reason);
+        talksWithHim(user, message.reason);
+      });
+    } else {
+      console.log(`this message is safe: ${message.text}`);
+    }
+  });
+});
+
+
