@@ -10,8 +10,11 @@ const chaossAfrica = require('./components/chaossAfrica/africa');
 
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
-const sendPrivateMessage = require('./components/chaossAfrica/privateMessage');
 const dotenv = require('dotenv');
+let alex;
+import('alex').then((text) => {
+  alex = text;
+});
 
 dotenv.config();
 
@@ -198,31 +201,21 @@ async function talksWithHim(userId) {
   }
 }
 
-
 app.message(async ({ message, client, say }) => {
   if (!message.text) {
-    //console.log('aa');
     return; 
   }
-  const user = message.user; 
-  const deleteWords = ['badword1', 'badword2', 'fuck', 'anotherbadword'];  
-  const lowerer = message.text.toLowerCase(); //this broken?
-  const deleteCheck = deleteWords.some(deleteWords => lowerer.includes(deleteWords));
-
-  const warnWords = ['warny', 'warny2', 'patel', 'alsowarn', 'bro', 'rawr'];  
-  const warnCheck = warnWords.some(warnWords => lowerer.includes(warnWords));
   
-  if (deleteCheck) {
-    //await say(`you made bad message..and i should delete this `);
-    talksWithHim(user)
+  const user = message.user; 
+  const lowerer = message.text.toLowerCase(); 
+  const alexCheck = alex.text(lowerer).messages;
+
+  if (alexCheck.length > 0) {
+    talksWithHim(user);
     await deleteMessage(message.channel, message.ts);
-  } 
-  else if (warnCheck) {
-    talksWithHim(user)
-    await say(`you made warn message..and i should warn this `);
+  } else {
+    console.log(`this message is safe: ${message.text}`);
   }
-  else {
-    await say(`this mesage him safe: ${message.text}`);
-  }
+});
 });
 
