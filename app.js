@@ -11,10 +11,7 @@ const chaossAfrica = require('./components/chaossAfrica/africa');
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
 const dotenv = require('dotenv');
-let alex;
-import('alex').then((text) => {
-  alex = text;
-});
+
 
 dotenv.config();
 
@@ -189,11 +186,11 @@ async function deleteMessage(channel, ts) {
   }
 }
 
-async function talksWithHim(userId) {
+async function talksWithHim(userId, message) {
   try {
     const result = await app.client.chat.postMessage({
       channel: userId,
-      text: "hey guy, dont said this!!",
+      text: message,
     });
     //console.log(result);
   } catch (error) {
@@ -201,21 +198,32 @@ async function talksWithHim(userId) {
   }
 }
 
-app.message(async ({ message, client, say }) => {
-  if (!message.text) {
-    return; 
-  }
-  
-  const user = message.user; 
-  const lowerer = message.text.toLowerCase(); 
-  const alexCheck = alex.text(lowerer).messages;
+let alex;
 
-  if (alexCheck.length > 0) {
-    talksWithHim(user);
-    await deleteMessage(message.channel, message.ts);
-  } else {
-    console.log(`this message is safe: ${message.text}`);
-  }
+async function loadAlex() {
+  alex = await import('alex');
+}
+
+loadAlex().then(() => {
+  app.message(async ({ message, client, say }) => {
+    if (!message.text) {
+      return; 
+    }
+    
+    const user = message.user; 
+    const lowerer = message.text.toLowerCase(); 
+    const alexCheck = alex.text(lowerer).messages;
+  
+    if (alexCheck.length > 0) {
+      await deleteMessage(message.channel, message.ts);
+      alexCheck.forEach(message => {
+        console.log(message.reason);
+        talksWithHim(user, message.reason);
+      });
+    } else {
+      console.log(`this message is safe: ${message.text}`);
+    }
+  });
 });
-});
+
 
