@@ -176,12 +176,27 @@ async function deleteMessage(channel, ts) {
       console.error(error);
       if (error.data && error.data.error === 'cant_delete_message') {
           console.log('!! im dont perm for delete !!')
+          console.log('!! pls make sure im DELETE_TOKEN correctly !!')
+          console.log('!! user token should be workspace admin !!')
+          console.log('!! user token should not be bot token !!')
+          console.log('!! im dont perm for delete !!')
       } else {
           console.log("delete err generic.");
       }
   }
 }
 
+async function talksWithHim(userId) {
+  try {
+    const result = await app.client.chat.postMessage({
+      channel: userId,
+      text: "hey guy, dont said this!!",
+    });
+    //console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 
 app.message(async ({ message, client, say }) => {
@@ -189,6 +204,7 @@ app.message(async ({ message, client, say }) => {
     //console.log('aa');
     return; 
   }
+  const user = message.user; 
   const deleteWords = ['badword1', 'badword2', 'fuck', 'anotherbadword'];  
   const lowerer = message.text.toLowerCase(); //this broken?
   const deleteCheck = deleteWords.some(deleteWords => lowerer.includes(deleteWords));
@@ -198,9 +214,11 @@ app.message(async ({ message, client, say }) => {
   
   if (deleteCheck) {
     //await say(`you made bad message..and i should delete this `);
+    talksWithHim(user)
     await deleteMessage(message.channel, message.ts);
   } 
   else if (warnCheck) {
+    talksWithHim(user)
     await say(`you made warn message..and i should warn this `);
   }
   else {
