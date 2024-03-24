@@ -24,6 +24,7 @@ const app = new App({
   port: process.env.PORT || 3000,
 });
 
+
 // ********************************NEWBIES*********/
 //This responds to a member when they  type newbie in any channel where the bot is present
 app.message(/newbie/i, async ({ message, client, logger }) => {
@@ -162,30 +163,34 @@ function saveUsers(usersArray) {
   console.log('⚡️ Bolt app is running!');
 })();
 
-async function deleteMessage(client, channel, ts, say) {
+async function deleteMessage(channel, ts) {
   try {
-    const result = await client.chat.delete({
-      channel: channel,
-      ts: ts,
-    });
-    console.log(result);
-    console.log(`!! im delete bad msg !!`);
+      const result = await app.client.chat.delete({
+          channel: channel,
+          ts: ts,
+          token: process.env.DELETE_TOKEN, // Use the admin (user) token for this operation
+      });
+      //console.log(result);
+      console.log("!! im delete bad msg !!");
   } catch (error) {
-    console.error(error);
-    // Handle specific error cases here, if needed
-    if (error.data && error.data.error === 'cant_delete_message') {
-      //await say(``);
-      console.log('!! im dont perm for delete !! ')
-    } else {
-      console.log(` delete err generic .`);
-    }
+      console.error(error);
+      if (error.data && error.data.error === 'cant_delete_message') {
+          console.log('!! im dont perm for delete !!')
+      } else {
+          console.log("delete err generic.");
+      }
   }
 }
 
 
+
 app.message(async ({ message, client, say }) => {
+  if (!message.text) {
+    //console.log('aa');
+    return; 
+  }
   const deleteWords = ['badword1', 'badword2', 'fuck', 'anotherbadword'];  
-  const lowerer = message.text.toLowerCase();  
+  const lowerer = message.text.toLowerCase(); //this broken?
   const deleteCheck = deleteWords.some(deleteWords => lowerer.includes(deleteWords));
 
   const warnWords = ['warny', 'warny2', 'patel', 'alsowarn', 'bro', 'rawr'];  
@@ -193,7 +198,7 @@ app.message(async ({ message, client, say }) => {
   
   if (deleteCheck) {
     //await say(`you made bad message..and i should delete this `);
-    await deleteMessage(client, message.channel, message.ts, say);
+    await deleteMessage(message.channel, message.ts);
   } 
   else if (warnCheck) {
     await say(`you made warn message..and i should warn this `);
