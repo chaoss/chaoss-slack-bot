@@ -234,7 +234,7 @@ loadAlex().then(() => {
         
         // warn user that their message contains bad words
         setTimeout(async () => {
-            talksWithHim(message.channel, user, `Your message "${message.text}" has been flagged. ${reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
+            talksWithHim(message.channel, user, `Your message "${text}" has been flagged. ${reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
         }, 1000);
 
         // wait 1 minute before checking the message again
