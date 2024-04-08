@@ -186,15 +186,30 @@ async function deleteMessage(channel, ts) {
   }
 }
 
-async function talksWithHim(userId, message) {
+// async function talksWithHim(userId, message) {
+//   try {
+//     const result = await app.client.chat.postMessage({
+//       channel: userId,
+//       text: message,
+//     });
+//     //console.log(result);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
+
+async function talksWithHim(channel, user, message) {
   try {
-    const result = await app.client.chat.postMessage({
-      channel: userId,
-      text: message,
+    const result = await app.client.chat.postEphemeral({
+      channel: channel, // The channel ID where the message was posted
+      user: user, // The ID of the user who will see the ephemeral message
+      text: message, // The message text
+      token: process.env.SLACK_BOT_TOKEN, // Ensure this is the bot token with required permissions
     });
-    //console.log(result);
+    console.log("Ephemeral message sent:", result);
   } catch (error) {
-    console.error(error);
+    console.error("Failed to send ephemeral message:", error);
   }
 }
 
@@ -216,13 +231,18 @@ loadAlex().then(() => {
   
     if (alexCheck.length > 0) {
 
-      talksWithHim(user, `Your message "${message.text}" has been flagged for potentially insensitive content. You have 1 minute to edit your message to something more appropriate before it deletes. Hover over your message, click the three dots, then click edit message.`);
       setTimeout(async () => {
-        alexCheck.forEach(message => {
-          console.log(message.reason);
-          talksWithHim(user, message.reason);
+        alexCheck.forEach(word => {
+          talksWithHim(message.channel, user, `Your message "${message.text}" has been flagged for potentially insensitive content. You have 1 minute to edit your message to something more appropriate before it deletes. Hover over your message, click the three dots, then click edit message.`);
         });
       }, 1000);
+
+      setTimeout(async () => {
+        alexCheck.forEach(word => {
+          console.log(word.reason);
+          talksWithHim(message.channel, user, word.reason);
+        });
+      }, 2000);
       
 
       setTimeout(async () => {
@@ -242,14 +262,15 @@ loadAlex().then(() => {
           if (currentMessage.text === message.text) {
             // If message is unchanged, delete it
             deleteMessage(message.channel, message.ts);
-            talksWithHim(user, "Message wasn't edited before deletion. Please still retry.");
+            talksWithHim(message.channel, user, "Message wasn't edited before deletion. Please still retry by sending another message.");
           } else {
+            talksWithHim(message.channel, user, "You fixed it, thanks!");
             console.log("Message was edited; no deletion required.");
           }
         } catch (error) {
           console.error("Error checking for message edit:", error);
         }
-      }, 60000)
+      }, 10000)
     } else {
       console.log(`this message is safe: ${message.text}`);
     }
