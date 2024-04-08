@@ -215,11 +215,41 @@ loadAlex().then(() => {
     const alexCheck = alex.text(lowerer).messages;
   
     if (alexCheck.length > 0) {
-      await deleteMessage(message.channel, message.ts);
-      alexCheck.forEach(message => {
-        console.log(message.reason);
-        talksWithHim(user, message.reason);
-      });
+
+      talksWithHim(user, `Your message "${message.text}" has been flagged for potentially insensitive content. You have 1 minute to edit your message to something more appropriate before it deletes. Hover over your message, click the three dots, then click edit message.`);
+      setTimeout(async () => {
+        alexCheck.forEach(message => {
+          console.log(message.reason);
+          talksWithHim(user, message.reason);
+        });
+      }, 1000);
+      
+
+      setTimeout(async () => {
+        try {
+          // Fetch the current state of the message to see if it has been edited
+          const history = await app.client.conversations.history({
+            channel: message.channel,
+            latest: message.ts,
+            inclusive: true,
+            limit: 1,
+            token: process.env.SLACK_BOT_TOKEN,
+          });
+    
+          const currentMessage = history.messages[0]
+
+          // Compare the original message with the current one (simple comparison, consider timestamp or other indicators)
+          if (currentMessage.text === message.text) {
+            // If message is unchanged, delete it
+            deleteMessage(message.channel, message.ts);
+            talksWithHim(user, "Message wasn't edited before deletion. Please still retry.");
+          } else {
+            console.log("Message was edited; no deletion required.");
+          }
+        } catch (error) {
+          console.error("Error checking for message edit:", error);
+        }
+      }, 60000)
     } else {
       console.log(`this message is safe: ${message.text}`);
     }
