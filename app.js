@@ -198,14 +198,14 @@ async function deleteMessage(channel, ts) {
 //   }
 // }
 
-
+//bot sends message to the user directly if they are flagged
 async function talksWithHim(channel, user, message) {
   try {
     const result = await app.client.chat.postEphemeral({
-      channel: channel, // The channel ID where the message was posted
-      user: user, // The ID of the user who will see the ephemeral message
-      text: message, // The message text
-      token: process.env.SLACK_BOT_TOKEN, // Ensure this is the bot token with required permissions
+      channel: channel, 
+      user: user, 
+      text: message, 
+      token: process.env.SLACK_BOT_TOKEN, 
     });
     console.log("Ephemeral message sent:", result);
   } catch (error) {
@@ -258,7 +258,7 @@ loadAlex().then(() => {
     
           const currentMessage = history.messages[0]
 
-          // Compare the original message with the current one (simple comparison, consider timestamp or other indicators)
+          // Compare the original message with the current one 
           if (currentMessage.text === message.text) {
             // If message is unchanged, delete it
             deleteMessage(message.channel, message.ts);
