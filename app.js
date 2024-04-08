@@ -231,11 +231,10 @@ loadAlex().then(() => {
   
     if (alexCheck.length > 0) {
 
+      const reason = alexCheck.map(word => word.reason).join(", and ");
+
       setTimeout(async () => {
-        alexCheck.forEach(word => {
-          console.log(word.reason);
-          talksWithHim(message.channel, user, `Your message "${message.text}" has been flagged because ${word.reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
-        });
+          talksWithHim(message.channel, user, `Your message "${message.text}" has been flagged. ${reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
       }, 1000);
 
 
