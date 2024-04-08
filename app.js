@@ -270,7 +270,7 @@ loadAlex().then(() => {
         } catch (error) {
           console.error("Error checking for message edit:", error);
         }
-      }, 10000)
+      }, 60000)
     } else {
       console.log(`this message is safe: ${message.text}`);
     }
