@@ -233,17 +233,11 @@ loadAlex().then(() => {
 
       setTimeout(async () => {
         alexCheck.forEach(word => {
-          talksWithHim(message.channel, user, `Your message "${message.text}" has been flagged for potentially insensitive content. You have 1 minute to edit your message to something more appropriate before it deletes. Hover over your message, click the three dots, then click edit message.`);
+          console.log(word.reason);
+          talksWithHim(message.channel, user, `Your message "${message.text}" has been flagged because ${word.reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
         });
       }, 1000);
 
-      setTimeout(async () => {
-        alexCheck.forEach(word => {
-          console.log(word.reason);
-          talksWithHim(message.channel, user, word.reason);
-        });
-      }, 2000);
-      
 
       setTimeout(async () => {
         try {
@@ -262,7 +256,7 @@ loadAlex().then(() => {
           if (currentMessage.text === message.text) {
             // If message is unchanged, delete it
             deleteMessage(message.channel, message.ts);
-            talksWithHim(message.channel, user, "Message wasn't edited before deletion. Please still retry by sending another message.");
+            talksWithHim(message.channel, user, "You didn't edit the message before deletion. Please still retry by sending another message.");
           } else {
             talksWithHim(message.channel, user, "You fixed it, thanks!");
             console.log("Message was edited; no deletion required.");
