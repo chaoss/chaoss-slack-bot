@@ -225,48 +225,50 @@ loadAlex().then(() => {
       return; 
     }
     
-    const user = message.user; 
-    const lowerer = message.text.toLowerCase(); 
-    const alexCheck = alex.text(lowerer).messages;
-  
-    if (alexCheck.length > 0) {
+    const checkMessage = async (user, channel, text, originalTimestamp, attempts = 1) => {
+      const lowerText = text.toLowerCase(); 
+      const alexCheck = alex.text(lowerText).messages;
+      
+      if (alexCheck.length > 0) { //insensitive words were found
+        const reason = alexCheck.map(word => word.reason).join(", and ");
+        
+        // warn user that their message contains bad words
+        setTimeout(async () => {
+            talksWithHim(message.channel, user, `Your message "${message.text}" has been flagged. ${reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
+        }, 1000);
 
-      const reason = alexCheck.map(word => word.reason).join(", and ");
+        // wait 1 minute before checking the message again
+        setTimeout(async () => {
+          try {
+            const history = await app.client.conversations.history({
+              channel: channel,
+              latest: originalTimestamp,
+              inclusive: true,
+              limit: 1,
+              token: process.env.SLACK_BOT_TOKEN,
+            });
 
-      setTimeout(async () => {
-          talksWithHim(message.channel, user, `Your message "${message.text}" has been flagged. ${reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
-      }, 1000);
-
-
-      setTimeout(async () => {
-        try {
-          // Fetch the current state of the message to see if it has been edited
-          const history = await app.client.conversations.history({
-            channel: message.channel,
-            latest: message.ts,
-            inclusive: true,
-            limit: 1,
-            token: process.env.SLACK_BOT_TOKEN,
-          });
-    
-          const currentMessage = history.messages[0]
-
-          // Compare the original message with the current one 
-          if (currentMessage.text === message.text) {
-            // If message is unchanged, delete it
-            deleteMessage(message.channel, message.ts);
-            talksWithHim(message.channel, user, "You didn't edit the message before deletion. Please still retry by sending another message.");
-          } else {
-            talksWithHim(message.channel, user, "You fixed it, thanks!");
-            console.log("Message was edited; no deletion required.");
+            const currentMessage = history.messages[0];
+            if (attempts >= 3) { // a set limit for editing the message to prevent infinite loops 
+              deleteMessage(channel, originalTimestamp);
+              talksWithHim(channel, user, "You didn't edit the message after several warnings. The message has been deleted.");
+            } else if (currentMessage.text !== text) { // your original message has been edited 
+              checkMessage(user, channel, currentMessage.text, originalTimestamp, attempts + 1); // check the message again for insensitive words
+            } else { //message was flagged but not edited, so now it will be deleted
+                deleteMessage(message.channel, message.ts);
+                talksWithHim(message.channel, user, "You didn't edit the message before deletion. Please still retry by sending another message.");
+            }
+          } catch (error) {
+            console.error("Error checking for message edit:", error);
           }
-        } catch (error) {
-          console.error("Error checking for message edit:", error);
-        }
-      }, 60000)
-    } else {
-      console.log(`this message is safe: ${message.text}`);
-    }
+        }, 60000); // 1 minute wait
+      } else if (attempts > 1) { // if the message has been edited and is now fine after finding insensitive words
+        talksWithHim(channel, user, "You fixed it, thanks!");
+      } 
+    };
+
+    // Initial call to check the message
+    checkMessage(message.user, message.channel, message.text, message.ts);
   });
 });
 
