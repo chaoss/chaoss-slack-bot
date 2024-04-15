@@ -252,12 +252,12 @@ loadAlex().then(() => {
             const currentMessage = history.messages[0];
             if (attempts >= 3) { // a set limit for editing the message to prevent infinite loops 
               deleteMessage(channel, originalTimestamp);
-              talksWithHim(channel, user, "You didn't edit the message after several warnings. The message has been deleted.");
+              talksWithHim(channel, user, "You did not fix the message after several warnings. The message has been deleted.");
             } else if (currentMessage.text !== text) { // your original message has been edited 
               checkMessage(user, channel, currentMessage.text, originalTimestamp, attempts + 1); // check the message again for insensitive words
             } else { //message was flagged but not edited, so now it will be deleted
                 deleteMessage(message.channel, message.ts);
-                talksWithHim(message.channel, user, "You didn't edit the message before deletion. Please still retry by sending another message.");
+                talksWithHim(message.channel, user, "You did not fix the message before deletion. Please still retry by sending another message.");
             }
           } catch (error) {
             console.error("Error checking for message edit:", error);
