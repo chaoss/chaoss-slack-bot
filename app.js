@@ -217,9 +217,9 @@ loadAlex().then(() => {
     if (alexCheck.length > 0) {
       await deleteMessage(message.channel, message.ts);
       alexCheck.forEach(message => {
-        console.log(message.reason);
-        talksWithHim(user, message.reason);
-      });
+      console.log(message.reason);
+      talksWithHim(user, message.reason);
+    });
     } else {
       console.log(`this message is safe: ${message.text}`);
     }
