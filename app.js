@@ -13,6 +13,7 @@ const memberJoinChannel = require('./components/joinChannel');
 const dotenv = require('dotenv');
 
 
+
 dotenv.config();
 
 // Initializes your app with your bot token and signing secret
@@ -186,15 +187,30 @@ async function deleteMessage(channel, ts) {
   }
 }
 
-async function talksWithHim(userId, message) {
+// async function talksWithHim(userId, message) {
+//   try {
+//     const result = await app.client.chat.postMessage({
+//       channel: userId,
+//       text: message,
+//     });
+//     //console.log(result);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
+//bot sends message to the user directly if they are flagged
+async function talksWithHim(channel, user, message) {
   try {
-    const result = await app.client.chat.postMessage({
-      channel: userId,
-      text: message,
+    const result = await app.client.chat.postEphemeral({
+      channel: channel, 
+      user: user, 
+      text: message, 
+      token: process.env.SLACK_BOT_TOKEN, 
     });
-    //console.log(result);
+    console.log("Ephemeral message sent:", result);
   } catch (error) {
-    console.error(error);
+    console.error("Failed to send ephemeral message:", error);
   }
 }
 
@@ -210,19 +226,50 @@ loadAlex().then(() => {
       return; 
     }
     
-    const user = message.user; 
-    const lowerer = message.text.toLowerCase(); 
-    const alexCheck = alex.text(lowerer).messages;
-  
-    if (alexCheck.length > 0) {
-      await deleteMessage(message.channel, message.ts);
-      alexCheck.forEach(message => {
-      console.log(message.reason);
-      talksWithHim(user, message.reason);
-    });
-    } else {
-      console.log(`this message is safe: ${message.text}`);
-    }
+    const checkMessage = async (user, channel, text, originalTimestamp, attempts = 1) => {
+      const lowerText = text.toLowerCase(); 
+      const alexCheck = alex.text(lowerText).messages;
+      
+      if (alexCheck.length > 0) { //insensitive words were found
+        const reason = alexCheck.map(word => word.reason).join(", and ");
+        
+        // warn user that their message contains bad words
+        setTimeout(async () => {
+            talksWithHim(message.channel, user, `Your message "${text}" has been flagged. ${reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
+        }, 1000);
+
+        // wait 1 minute before checking the message again
+        setTimeout(async () => {
+          try {
+            const history = await app.client.conversations.history({
+              channel: channel,
+              latest: originalTimestamp,
+              inclusive: true,
+              limit: 1,
+              token: process.env.SLACK_BOT_TOKEN,
+            });
+
+            const currentMessage = history.messages[0];
+            if (attempts >= 3) { // a set limit for editing the message to prevent infinite loops 
+              deleteMessage(channel, originalTimestamp);
+              talksWithHim(channel, user, "You didn't edit the message after several warnings. The message has been deleted.");
+            } else if (currentMessage.text !== text) { // your original message has been edited 
+              checkMessage(user, channel, currentMessage.text, originalTimestamp, attempts + 1); // check the message again for insensitive words
+            } else { //message was flagged but not edited, so now it will be deleted
+                deleteMessage(message.channel, message.ts);
+                talksWithHim(message.channel, user, "You didn't edit the message before deletion. Please still retry by sending another message.");
+            }
+          } catch (error) {
+            console.error("Error checking for message edit:", error);
+          }
+        }, 60000); // 1 minute wait
+      } else if (attempts > 1) { // if the message has been edited and is now fine after finding insensitive words
+        talksWithHim(channel, user, "You fixed it, thanks!");
+      } 
+    };
+
+    // Initial call to check the message
+    checkMessage(message.user, message.channel, message.text, message.ts);
   });
 });
 
