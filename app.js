@@ -13,7 +13,7 @@ const memberJoinChannel = require('./components/joinChannel');
 const dotenv = require('dotenv');
 const { createWorker } = require('tesseract.js');
 const { ImageAnnotatorClient } = require('@google-cloud/vision');
-
+const vision = require('@google-cloud/vision');
 
 dotenv.config();
 
@@ -205,16 +205,10 @@ async function talksWithHim(channel, user, message) {
   }
 }
 
-// OCR initialization
-// Initialize Tesseract OCR worker
-const worker = createWorker();
-const visionClient = new ImageAnnotatorClient();
 
-(async () => {
-  await worker.load();
-  await worker.loadLanguage('eng');
-  await worker.initialize('eng');
-})();
+const worker = createWorker();
+const visionClient = new vision.ImageAnnotatorClient();
+
 
 let alex;
 
@@ -230,11 +224,16 @@ loadAlex().then(() => {
 
     let textToCheck = message.text || ''; // default to empty string if no text is present
     if (message.files && message.files.length > 0) {
-      // Extract text with Google Cloud Vision API
-      const [result] = await visionClient.textDetection(message.files[0].url);
-      const detections = result.textAnnotations;
-      textToCheck = detections[0].description; // Assume the first annotation contains the main text
-    }
+       // Extract text with Google Cloud Vision API
+      try {
+        const [result] = await visionClient.textDetection(message.files[0].url);
+        const detections = result.textAnnotations;
+        textToCheck = detections[0].description;
+        console.log('Text:', textToCheck);
+      } catch (err) {
+        console.error('An error occurred:', err);
+      }
+}
     
     const checkMessage = async (user, channel, text, originalTimestamp, attempts = 1) => {
       const lowerText = text.toLowerCase(); 
@@ -282,5 +281,4 @@ loadAlex().then(() => {
     checkMessage(message.user, message.channel, textToCheck, message.ts);
   });
 });
-
 
