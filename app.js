@@ -11,7 +11,7 @@ const chaossAfrica = require('./components/chaossAfrica/africa');
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
 const dotenv = require('dotenv');
-
+const { createWorker } = require('tesseract.js');
 
 
 dotenv.config();
@@ -220,11 +220,56 @@ async function loadAlex() {
   alex = await import('alex');
 }
 
+app.event('file_shared', async ({ event, context }) => {
+  try {
+    // Initialize a client
+    const client = new WebClient(context.SLACK_BOT_TOKEN);
+
+    // Get the shared file's info
+    const result = await client.files.info({ file: event.file_id });
+
+    // Check if the file is a JPEG
+    if (result.file.mimetype === 'image/jpeg') {
+      console.log('A JPEG file was shared:', result.file.url_private);
+      // Continue processing the JPEG file...
+    }
+  } catch (error) {
+    console.error('An error occurred while handling the file_shared event:', error);
+  }
+});
 loadAlex().then(() => {
   app.message(async ({ message, client, say }) => {
-    if (!message.text) {
+    if (!message.text && !message.file) {
       return; 
     }
+
+
+    let textToCheck = message.text || ''; // default to empty string if no text is present
+    if (message.files && message.files.length > 0) {
+      try {
+        console.log('Attempting to fetch text from image:', message.files[0].url_private);
+    
+        // Create a Tesseract worker
+        const worker = createWorker({
+          langPath: 'eng',
+          gzip: false,
+        });
+    
+        // Recognize text from image
+        await worker.load();
+        await worker.loadLanguage('eng');
+        await worker.initialize('eng');
+        const { data: { text } } = await worker.recognize(message.files[0].url_private);
+        await worker.terminate();
+    
+        textToCheck = text;
+        console.log('Text extracted from image:', textToCheck);
+      } catch (err) {
+        console.error('An error occurred while fetching text from image:', err);
+      }
+    }
+
+    
     
     const checkMessage = async (user, channel, text, originalTimestamp, attempts = 1) => {
       const lowerText = text.toLowerCase(); 
