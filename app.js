@@ -226,7 +226,7 @@ loadAlex().then(() => {
     if (message.files && message.files.length > 0) {
        // Extract text with Google Cloud Vision API
       try {
-        const [result] = await visionClient.textDetection(message.files[0].url);
+        const [result] = await visionClient.textDetection(message.files[0].url_private);
         const detections = result.textAnnotations;
         textToCheck = detections[0].description;
         console.log('Text:', textToCheck);
