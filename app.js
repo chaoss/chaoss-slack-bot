@@ -11,7 +11,8 @@ const chaossAfrica = require('./components/chaossAfrica/africa');
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
 const dotenv = require('dotenv');
-
+const { createWorker } = require('tesseract.js');
+const { ImageAnnotatorClient } = require('@google-cloud/vision');
 
 
 dotenv.config();
@@ -187,17 +188,7 @@ async function deleteMessage(channel, ts) {
   }
 }
 
-// async function talksWithHim(userId, message) {
-//   try {
-//     const result = await app.client.chat.postMessage({
-//       channel: userId,
-//       text: message,
-//     });
-//     //console.log(result);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+
 
 //bot sends message to the user directly if they are flagged
 async function talksWithHim(channel, user, message) {
@@ -214,6 +205,17 @@ async function talksWithHim(channel, user, message) {
   }
 }
 
+// OCR initialization
+// Initialize Tesseract OCR worker
+const worker = createWorker();
+const visionClient = new ImageAnnotatorClient();
+
+(async () => {
+  await worker.load();
+  await worker.loadLanguage('eng');
+  await worker.initialize('eng');
+})();
+
 let alex;
 
 async function loadAlex() {
@@ -222,8 +224,16 @@ async function loadAlex() {
 
 loadAlex().then(() => {
   app.message(async ({ message, client, say }) => {
-    if (!message.text) {
-      return; 
+    if (!message.text && !message.files) { // checking if message does not contain text or images
+      return;
+    }
+
+    let textToCheck = message.text || ''; // default to empty string if no text is present
+    if (message.files && message.files.length > 0) {
+      // Extract text with Google Cloud Vision API
+      const [result] = await visionClient.textDetection(message.files[0].url);
+      const detections = result.textAnnotations;
+      textToCheck = detections[0].description; // Assume the first annotation contains the main text
     }
     
     const checkMessage = async (user, channel, text, originalTimestamp, attempts = 1) => {
@@ -269,7 +279,7 @@ loadAlex().then(() => {
     };
 
     // Initial call to check the message
-    checkMessage(message.user, message.channel, message.text, message.ts);
+    checkMessage(message.user, message.channel, textToCheck, message.ts);
   });
 });
 
