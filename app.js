@@ -11,9 +11,8 @@ const chaossAfrica = require('./components/chaossAfrica/africa');
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
 const dotenv = require('dotenv');
-const { createWorker } = require('tesseract.js');
-const { ImageAnnotatorClient } = require('@google-cloud/vision');
-const vision = require('@google-cloud/vision');
+
+
 
 dotenv.config();
 
@@ -188,7 +187,17 @@ async function deleteMessage(channel, ts) {
   }
 }
 
-
+// async function talksWithHim(userId, message) {
+//   try {
+//     const result = await app.client.chat.postMessage({
+//       channel: userId,
+//       text: message,
+//     });
+//     //console.log(result);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 //bot sends message to the user directly if they are flagged
 async function talksWithHim(channel, user, message) {
@@ -205,11 +214,6 @@ async function talksWithHim(channel, user, message) {
   }
 }
 
-
-const worker = createWorker();
-const visionClient = new vision.ImageAnnotatorClient();
-
-
 let alex;
 
 async function loadAlex() {
@@ -218,22 +222,9 @@ async function loadAlex() {
 
 loadAlex().then(() => {
   app.message(async ({ message, client, say }) => {
-    if (!message.text && !message.files) { // checking if message does not contain text or images
-      return;
+    if (!message.text) {
+      return; 
     }
-
-    let textToCheck = message.text || ''; // default to empty string if no text is present
-    if (message.files && message.files.length > 0) {
-       // Extract text with Google Cloud Vision API
-      try {
-        const [result] = await visionClient.textDetection(message.files[0].url_private);
-        const detections = result.textAnnotations;
-        textToCheck = detections[0].description;
-        console.log('Text:', textToCheck);
-      } catch (err) {
-        console.error('An error occurred:', err);
-      }
-}
     
     const checkMessage = async (user, channel, text, originalTimestamp, attempts = 1) => {
       const lowerText = text.toLowerCase(); 
@@ -261,12 +252,12 @@ loadAlex().then(() => {
             const currentMessage = history.messages[0];
             if (attempts >= 3) { // a set limit for editing the message to prevent infinite loops 
               deleteMessage(channel, originalTimestamp);
-              talksWithHim(channel, user, "You did not fix the message after several warnings. The message has been deleted.");
+              talksWithHim(channel, user, "You didn't edit the message after several warnings. The message has been deleted.");
             } else if (currentMessage.text !== text) { // your original message has been edited 
               checkMessage(user, channel, currentMessage.text, originalTimestamp, attempts + 1); // check the message again for insensitive words
             } else { //message was flagged but not edited, so now it will be deleted
                 deleteMessage(message.channel, message.ts);
-                talksWithHim(message.channel, user, "You did not fix the message before deletion. Please still retry by sending another message.");
+                talksWithHim(message.channel, user, "You didn't edit the message before deletion. Please still retry by sending another message.");
             }
           } catch (error) {
             console.error("Error checking for message edit:", error);
@@ -278,7 +269,8 @@ loadAlex().then(() => {
     };
 
     // Initial call to check the message
-    checkMessage(message.user, message.channel, textToCheck, message.ts);
+    checkMessage(message.user, message.channel, message.text, message.ts);
   });
 });
+
 
