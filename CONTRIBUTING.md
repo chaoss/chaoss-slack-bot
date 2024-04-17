@@ -5,7 +5,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 CHAOSS Slack Bot is an open source project and we love to receive contributions from our community — you! There are many ways to contribute, from improving the documentation, submitting bug reports and feature requests or writing code which can be incorporated into CHAOSS Slack Bot itself.
 
-We follow the standard Git workflow of fork -> change -> pull request -> merge -> update fork -> change ... (repeat forever). If you are new to open source, we recommend GitHub's excellent guide on "How to Contribute to Open Source". In addition, please feel free to reach out to any of the maintainers or other community members if you are struggling; we are here to help you learn.
+We follow the standard Git workflow of fork -> change -> pull request -> merge -> update fork -> change ... (repeat forever). If you are new to open source, we recommend GitHub's excellent guide on "How to Contribute to Open Source". In addition, please feel free to reach out to any of the maintainers or other community members if you are struggling; we are here to help you learn!
 
 ## Adding or editing wiki pages locally
 Wikis are part of Git repositories, so you can make changes locally and push them to your repository using a Git workflow.
