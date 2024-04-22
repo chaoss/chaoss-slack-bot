@@ -233,28 +233,58 @@ async function talksWithHim(channel, user, message, flaggedWord) {
 
 const axios = require('axios');
 
-let flaggedWord;
+let flaggedWord; // Global variable to store the flagged words
 app.action('learn_more', async ({ ack, body, context }) => {
   // Acknowledge the action
   await ack();
-
-  // Get the flagged word from the button value
-  console.log(flaggedWord);
-  // Make a HTTP request to the API
+  // Create an array of promises
+const promises = flaggedWord.map(async word => {
   try {
-    const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/fuck`);
-
-    // Send the response to the user
-    await app.client.chat.postMessage({
-      channel: body.channel.id,
-      text: `Here's the definition of ${flaggedWord}: ${response.data}`,
-      token: context.botToken,
-    });
+    const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
+    return { word, definitions: response.data[0].meanings.map(meaning => meaning.definitions[0].definition) };
   } catch (error) {
-    console.error('Failed to fetch definition:', error);
+    console.error(`Failed to fetch definition for ${word}:`, error);
+    return { word, error: error.message };
   }
 });
 
+// Wait for all promises to resolve
+const results = await Promise.all(promises);
+
+// Send the response to the user
+for (const result of results) {
+  if (result.error) {
+    await app.client.chat.postMessage({
+      channel: body.channel.id,
+      text: `Failed to fetch definition for ${result.word}: ${result.error}`,
+      token: context.botToken,
+    });
+  } else {
+    const blocks = result.definitions.map((definition, index) => ({
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": `*Definition ${index + 1}*: ${definition}`
+      },
+      "accessory": {
+        "type": "button",
+        "text": {
+          "type": "plain_text",
+          "text": "Show this definition"
+        },
+        "action_id": `definition_${index}`
+      }
+    }));
+
+    await app.client.chat.postMessage({
+      channel: body.channel.id,
+      blocks,
+      token: context.botToken,
+    });
+  }
+}s
+});
+  
 let alex;
 
 async function loadAlex() {
