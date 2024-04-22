@@ -220,6 +220,7 @@ async function talksWithHim(channel, user, message, flaggedWord) {
               type: 'plain_text',
               text: 'Learn More',
             },
+            style: 'primary',
             action_id: 'learn_more',
           },
         },
