@@ -232,7 +232,7 @@ async function talksWithHimButton(channel, user, message, flaggedWord) {
   }
 }
 
-async function talksWithHim(channel, user, message, flaggedWord) {
+async function talksWithHim(channel, user, message) {
   try {
     const result = await app.client.chat.postEphemeral({
       channel: channel,
@@ -253,7 +253,7 @@ let flaggedWord; // Global variable to store the flagged words
 // Use a Map as a simple server-side cache
 const definitionsCache = new Map();
 
-app.action('learn_more', async ({ ack, body, context }) => {
+app.action('learn_more', async ({ ack, user, channel, body, context }) => {
   // Acknowledge the action
   await ack();
 
@@ -278,8 +278,9 @@ app.action('learn_more', async ({ ack, body, context }) => {
 
   // send the first definition and a button to request an alt definition for each word using the button
   results.forEach(async (result, i) => {
-    await app.client.chat.postMessage({
+    await app.client.chat.postEphemeral({
       channel: body.channel.id,
+      user: body.user.id,
       text: `*Definition 1 for ${result.word}*: ${result.definitions[0]}`,
       blocks: [{
         "type": "section",
@@ -302,7 +303,7 @@ app.action('learn_more', async ({ ack, body, context }) => {
 });
 
 // handles the second button click
-app.action(/^definition_next_/, async ({ ack, body, context, action }) => {
+app.action(/^definition_next_/, async ({ ack, body, channel, context, action }) => {
   // Acknowledge the action
   await ack();
 
@@ -320,15 +321,17 @@ app.action(/^definition_next_/, async ({ ack, body, context, action }) => {
     definitionsCache.set(word, { definitions, index: index + 1 });
 
     // Send the next definition
-    await app.client.chat.postMessage({
+    await app.client.chat.postEphemeral({
       channel: body.channel.id,
+      user: body.user.id,
       text: `*Definition ${index + 2} for ${word}*: ${definitions[index + 1]}`,
       token: context.botToken,
     });
   } else {
     // Send a message saying "That's all"
-    await app.client.chat.postMessage({
+    await app.client.chat.postEphemeral({
       channel: body.channel.id,
+      user: body.user.id,
       text: `That's all for "${word}".`,
       token: context.botToken,
     });
