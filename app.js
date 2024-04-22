@@ -234,57 +234,84 @@ async function talksWithHim(channel, user, message, flaggedWord) {
 const axios = require('axios');
 
 let flaggedWord; // Global variable to store the flagged words
+
+// Use a Map as a simple server-side cache
+const definitionsCache = new Map();
+
 app.action('learn_more', async ({ ack, body, context }) => {
   // Acknowledge the action
   await ack();
+
   // Create an array of promises
-const promises = flaggedWord.map(async word => {
-  try {
-    const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
-    return { word, definitions: response.data[0].meanings.map(meaning => meaning.definitions[0].definition) };
-  } catch (error) {
-    console.error(`Failed to fetch definition for ${word}:`, error);
-    return { word, error: error.message };
-  }
-});
+  const promises = flaggedWord.map(async word => {
+    try {
+      const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
+      return { word, definitions: response.data[0].meanings.map(meaning => meaning.definitions[0].definition) };
+    } catch (error) {
+      console.error(`Failed to fetch definition for ${word}:`, error);
+      return { word, error: error.message };
+    }
+  });
 
-// Wait for all promises to resolve
-const results = await Promise.all(promises);
+  // Wait for all promises to resolve
+  const results = await Promise.all(promises);
 
-// Send the response to the user
-for (const result of results) {
-  if (result.error) {
-    await app.client.chat.postMessage({
-      channel: body.channel.id,
-      text: `Failed to fetch definition for ${result.word}: ${result.error}`,
-      token: context.botToken,
-    });
-  } else {
-    const blocks = result.definitions.map((definition, index) => ({
+  // Store the definitions in the cache
+  definitionsCache.set(body.channel.id, { definitions: results[0].definitions, index: 0 });
+
+  // Send the first definition and a button to request more
+  await app.client.chat.postMessage({
+    channel: body.channel.id,
+    text: `*Definition 1*: ${results[0].definitions[0]}`,
+    blocks: [{
       "type": "section",
       "text": {
         "type": "mrkdwn",
-        "text": `*Definition ${index + 1}*: ${definition}`
+        "text": `*Definition 1*: ${results[0].definitions[0]}`
       },
       "accessory": {
         "type": "button",
         "text": {
           "type": "plain_text",
-          "text": "Show this definition"
+          "text": "Show another definition"
         },
-        "action_id": `definition_${index}`
+        "action_id": `definition_next`
       }
-    }));
+    }],
+    token: context.botToken,
+  });
+});
 
+// Handle button click
+app.action('definition_next', async ({ ack, body, context }) => {
+  // Acknowledge the action
+  await ack();
+
+  // Get the definitions and the current index from the cache
+  const cache = definitionsCache.get(body.channel.id);
+  const definitions = cache.definitions;
+  const index = cache.index;
+
+  // Check if there are more definitions
+  if (index + 1 < definitions.length) {
+    // Update the index in the cache
+    definitionsCache.set(body.channel.id, { definitions, index: index + 1 });
+
+    // Send the next definition
     await app.client.chat.postMessage({
       channel: body.channel.id,
-      blocks,
+      text: `*Definition ${index + 2}*: ${definitions[index + 1]}`,
+      token: context.botToken,
+    });
+  } else {
+    // Send a message saying "That's all"
+    await app.client.chat.postMessage({
+      channel: body.channel.id,
+      text: `That's all.`,
       token: context.botToken,
     });
   }
-}s
 });
-  
 let alex;
 
 async function loadAlex() {
