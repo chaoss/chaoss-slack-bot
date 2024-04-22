@@ -11,7 +11,6 @@ const chaossAfrica = require('./components/chaossAfrica/africa');
 const joinTeam = require('./components/joinTeam');
 const memberJoinChannel = require('./components/joinChannel');
 const dotenv = require('dotenv');
-const { createWorker } = require('tesseract.js');
 
 
 dotenv.config();
@@ -199,14 +198,32 @@ async function deleteMessage(channel, ts) {
 //   }
 // }
 
+
 //bot sends message to the user directly if they are flagged
-async function talksWithHim(channel, user, message) {
+async function talksWithHim(channel, user, message, flaggedWord) {
   try {
     const result = await app.client.chat.postEphemeral({
-      channel: channel, 
-      user: user, 
-      text: message, 
-      token: process.env.SLACK_BOT_TOKEN, 
+      channel: channel,
+      user: user,
+      text: message,
+      token: process.env.SLACK_BOT_TOKEN,
+      blocks: [
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: message,
+          },
+          accessory: {
+            type: 'button',
+            text: {
+              type: 'plain_text',
+              text: 'Learn More',
+            },
+            action_id: 'learn_more',
+          },
+        },
+      ],
     });
     console.log("Ephemeral message sent:", result);
   } catch (error) {
@@ -214,73 +231,54 @@ async function talksWithHim(channel, user, message) {
   }
 }
 
+const axios = require('axios');
+
+let flaggedWord;
+app.action('learn_more', async ({ ack, body, context }) => {
+  // Acknowledge the action
+  await ack();
+
+  // Get the flagged word from the button value
+  console.log(flaggedWord);
+  // Make a HTTP request to the API
+  try {
+    const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/fuck`);
+
+    // Send the response to the user
+    await app.client.chat.postMessage({
+      channel: body.channel.id,
+      text: `Here's the definition of ${flaggedWord}: ${response.data}`,
+      token: context.botToken,
+    });
+  } catch (error) {
+    console.error('Failed to fetch definition:', error);
+  }
+});
+
 let alex;
 
 async function loadAlex() {
   alex = await import('alex');
 }
 
-app.event('file_shared', async ({ event, context }) => {
-  try {
-    // Initialize a client
-    const client = new WebClient(context.SLACK_BOT_TOKEN);
 
-    // Get the shared file's info
-    const result = await client.files.info({ file: event.file_id });
-
-    // Check if the file is a JPEG
-    if (result.file.mimetype === 'image/jpeg') {
-      console.log('A JPEG file was shared:', result.file.url_private);
-      // Continue processing the JPEG file...
-    }
-  } catch (error) {
-    console.error('An error occurred while handling the file_shared event:', error);
-  }
-});
 loadAlex().then(() => {
   app.message(async ({ message, client, say }) => {
     if (!message.text && !message.file) {
       return; 
     }
-
-
-    let textToCheck = message.text || ''; // default to empty string if no text is present
-    if (message.files && message.files.length > 0) {
-      try {
-        console.log('Attempting to fetch text from image:', message.files[0].url_private);
-    
-        // Create a Tesseract worker
-        const worker = createWorker({
-          langPath: 'eng',
-          gzip: false,
-        });
-    
-        // Recognize text from image
-        await worker.load();
-        await worker.loadLanguage('eng');
-        await worker.initialize('eng');
-        const { data: { text } } = await worker.recognize(message.files[0].url_private);
-        await worker.terminate();
-    
-        textToCheck = text;
-        console.log('Text extracted from image:', textToCheck);
-      } catch (err) {
-        console.error('An error occurred while fetching text from image:', err);
-      }
-    }
-
-    
     
     const checkMessage = async (user, channel, text, originalTimestamp, attempts = 1) => {
       const lowerText = text.toLowerCase(); 
       const alexCheck = alex.text(lowerText).messages;
-      
+
       if (alexCheck.length > 0) { //insensitive words were found
         const reason = alexCheck.map(word => word.reason).join(", and ");
+        flaggedWord = alexCheck.map(word => word.actual);
         
         // warn user that their message contains bad words
         setTimeout(async () => {
-            talksWithHim(message.channel, user, `Your message "${text}" has been flagged. ${reason}. You have 1 minute to edit your message or else it will delete. To do so, hover over your message, click the three dots, then click edit message.`);
+            talksWithHim(message.channel, user, `Your message "${text}" has been flagged. ${reason}. You have 1 minute to edit your message before it deletes. To do so, hover over your message, click the three dots, then click edit message.`);
         }, 1000);
 
         // wait 1 minute before checking the message again
