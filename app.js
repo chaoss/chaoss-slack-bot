@@ -200,7 +200,7 @@ async function deleteMessage(channel, ts) {
 
 
 //bot sends message to the user directly if they are flagged
-async function talksWithHim(channel, user, message, flaggedWord) {
+async function talksWithHimButton(channel, user, message, flaggedWord) {
   try {
     const result = await app.client.chat.postEphemeral({
       channel: channel,
@@ -225,6 +225,20 @@ async function talksWithHim(channel, user, message, flaggedWord) {
           },
         },
       ],
+    });
+    console.log("Ephemeral message sent:", result);
+  } catch (error) {
+    console.error("Failed to send ephemeral message:", error);
+  }
+}
+
+async function talksWithHim(channel, user, message, flaggedWord) {
+  try {
+    const result = await app.client.chat.postEphemeral({
+      channel: channel,
+      user: user,
+      text: message,
+      token: process.env.SLACK_BOT_TOKEN,
     });
     console.log("Ephemeral message sent:", result);
   } catch (error) {
@@ -349,7 +363,7 @@ loadAlex().then(() => {
         
         // warn user that their message contains bad words
         setTimeout(async () => {
-            talksWithHim(message.channel, user, `Your message "${text}" has been flagged. ${reason}. You have 1 minute to edit your message before it deletes. To do so, hover over your message, click the three dots, then click edit message.`);
+          talksWithHimButton(message.channel, user, `Your message "${text}" has been flagged. ${reason}. You have 1 minute to edit your message before it deletes. To do so, hover over your message, click the three dots, then click edit message.`);
         }, 1000);
 
         // wait 1 minute before checking the message again
