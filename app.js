@@ -349,20 +349,170 @@ async function loadAlex() {
   alex = await import('alex');
 }
 
+const fs = require('fs');
+const path = require('path');
+
+const FILE_PATH = path.join(__dirname, 'custom.json');
+
+let badWords = [];
+
+function loadBadWords() {
+    fs.readFile(FILE_PATH, 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading file:", err);
+            createBlankJson(); // Creates a blank file if there is an error reading the file
+            return;
+        }
+        try {
+            badWords = JSON.parse(data);
+            console.log("Bad words loaded:", badWords);
+        } catch (parseError) {
+            console.error("Error parsing JSON from file:", parseError);
+            createBlankJson(); // Reset file with blank JSON if parsing fails
+        }
+    });
+}
+
+function createBlankJson() {
+    fs.writeFile(FILE_PATH, JSON.stringify([]), 'utf8', (err) => {
+        if (err) {
+            console.error("Error writing blank JSON file:", err);
+            return;
+        }
+        console.log("Blank JSON file created successfully.");
+        badWords = [];
+    });
+}
+
+
+function addBadWord(word, reason) {
+  badWords.push({ word, reason });
+  saveBadWords();
+}
+
+function removeBadWord(word) {
+  const originalLength = badWords.length;
+  badWords = badWords.filter(bw => bw.word.toLowerCase() !== word.toLowerCase());
+  saveBadWords();
+  return originalLength !== badWords.length; // Returns true if something was removed
+}
+
+// app.message(async ({ message, client, say }) => {
+//   try {
+//       const result = await client.users.info({ user: message.user });
+//       const user = result.user;
+//       const text = message.text.trim();
+//       const addCommand = text.match(/^!addword\s+(\S+)\s+(.+)$/i);
+//       const removeCommand = text.match(/^!removeword\s+(\S+)$/i);
+//       if ((user.is_admin) && (addCommand || removeCommand)) {
+
+//           if (addCommand) {
+//               const [, word, reason] = addCommand;
+//               addBadWord(word, reason);
+//               await say(`Added "${word}" to the bad words list with reason: ${reason}`);
+//           } else if (removeCommand) {
+//               const [, word] = removeCommand;
+//               const removed = removeBadWord(word);
+//               if (removed) {
+//                   await say(`Removed "${word}" from the bad words list.`);
+//               } else {
+//                   await say(`Could not find "${word}" in the bad words list.`);
+//               }
+//           } else {
+//               //await say("Invalid command or format. Please use `!addword word reason` or `!removeword word`.");
+//           }
+//       } else {
+//           //await say("You do not have the necessary permissions to perform this action.");
+//       }
+//   } catch (error) {
+//       console.error("Failed to retrieve user info or process command:", error);
+//       await say("An error occurred while processing your command.");
+//   }
+// });
+
+
+
+
+function saveBadWords() {
+  try {
+      // Write the JSON synchronously to the file
+      fs.writeFileSync(FILE_PATH, JSON.stringify(badWords, null, 2), 'utf8');
+      console.log("Bad words updated successfully.");
+  } catch (err) {
+      console.error("Error saving bad words to file:", err);
+  }
+}
+
+
+
+
+function findBadWords(message) {
+  const regex = new RegExp(`\\b(${badWords.map(bw => bw.word).join('|')})\\b`, 'ig');
+  const matches = message.match(regex);
+  if (matches) {
+    const matchedWords = [...new Set(matches.map(word => word.toLowerCase()))];
+    return badWords.filter(bw => matchedWords.includes(bw.word.toLowerCase()));
+  }
+  return [];
+}
+
 
 loadAlex().then(() => {
+  loadBadWords()
+  // setTimeout(() => {
+  // //  addBadWord("kim", "kim is weird")
+  // //addBadWord("arya", "arya is arya")
+  //   removeBadWord("arya")
+  // }, 500);
   app.message(async ({ message, client, say }) => {
     if (!message.text && !message.file) {
       return; 
     }
+
+    const result = await client.users.info({ user: message.user });
+      const user = result.user;
+      const text = message.text.trim();
+      const addCommand = text.match(/^!addword\s+(\S+)\s+(.+)$/i);
+      const removeCommand = text.match(/^!removeword\s+(\S+)$/i);
+    if ((user.is_admin) && (addCommand || removeCommand)) {
+
+          if (addCommand) {
+              const [, word, reason] = addCommand;
+              addBadWord(word, reason);
+              await say(`Added "${word}" to the bad words list with reason: ${reason}`);
+          } else if (removeCommand) {
+              const [, word] = removeCommand;
+              const removed = removeBadWord(word);
+              if (removed) {
+                  await say(`Removed "${word}" from the bad words list.`);
+              } else {
+                  await say(`Could not find "${word}" in the bad words list.`);
+              }
+          } else {
+              //await say("Invalid command or format. Please use `!addword word reason` or `!removeword word`.");
+          }
+      } else {
+          //await say("You do not have the necessary permissions to perform this action.");
+      
     
     const checkMessage = async (user, channel, text, originalTimestamp, attempts = 1) => {
       const lowerText = text.toLowerCase(); 
       const alexCheck = alex.text(lowerText).messages;
+      const alexChecker = [...alexCheck]; // original check
+      let newFinder = findBadWords(text.toLowerCase())
+      console.log(newFinder)
+      if (newFinder.length > 0){
+        newFinder.forEach(wordy => {
+          alexCheck.push({
+            reason: `Don't use ${wordy.word}, ${wordy.reason}`,
+            actual: wordy.word,
+           });
+        })
+      }
 
       if (alexCheck.length > 0) { //insensitive words were found
         const reason = alexCheck.map(word => word.reason).join(", and ");
-        flaggedWord = alexCheck.map(word => word.actual);
+        flaggedWord = alexChecker.map(word => word.actual); // bypass flagger due to custom word
         
         // warn user that their message contains bad words
         setTimeout(async () => {
@@ -401,7 +551,7 @@ loadAlex().then(() => {
 
     // Initial call to check the message
     checkMessage(message.user, message.channel, message.text, message.ts);
-  });
+  }});
 });
 
 
