@@ -156,6 +156,7 @@ function saveUsers(usersArray) {
 }
 */
 //************ */
+
 (async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
@@ -186,17 +187,17 @@ async function deleteMessage(channel, ts) {
   }
 }
 
-// async function talksWithHim(userId, message) {
-//   try {
-//     const result = await app.client.chat.postMessage({
-//       channel: userId,
-//       text: message,
-//     });
-//     //console.log(result);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+async function talksWithHimPrivate(userId, message) {
+  try {
+    const result = await app.client.chat.postMessage({
+      channel: userId,
+      text: message,
+    });
+    //console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 
 //bot sends message to the user directly if they are flagged
@@ -538,14 +539,15 @@ loadAlex().then(() => {
               checkMessage(user, channel, currentMessage.text, originalTimestamp, attempts + 1); // check the message again for insensitive words
             } else { //message was flagged but not edited, so now it will be deleted
                 deleteMessage(message.channel, message.ts);
-                talksWithHim(message.channel, user, "You didn't edit the message before deletion. Please still retry by sending another message.");
+                talksWithHim(message.channel, user, "Uh oh! Just a heads up, we've removed your message because it included insensitive language. No worries though! We've sent a copy of your message to your private DM with DEI Bot. When you have a moment, please edit it your message and retry sending it.");
+                talksWithHimPrivate(user, `Copy of your deleted message: ${text}`)
             }
           } catch (error) {
             console.error("Error checking for message edit:", error);
           }
-        }, 60000); // 1 minute wait
+        }, 10000); // 1 minute wait
       } else if (attempts > 1) { // if the message has been edited and is now fine after finding insensitive words
-        talksWithHim(channel, user, "You fixed it, thanks!");
+        talksWithHim(channel, user, "Thank you for updating your message!");
       } 
     };
 
