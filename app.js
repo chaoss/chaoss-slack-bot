@@ -517,7 +517,7 @@ loadAlex().then(() => {
         
         // warn user that their message contains bad words
         setTimeout(async () => {
-          talksWithHimButton(message.channel, user, `Your message "${text}" has been flagged. ${reason}. You have 1 minute to edit your message before it deletes. To do so, hover over your message, click the three dots, then click edit message.`);
+          talksWithHimButton(message.channel, user, `Hey there! Your message "${text}" has been flagged. ${reason}. We're all about promoting respect and inclusivity here! Could you please take a moment to revise it? We will give you 1 minute to edit your message before it deletes. To do so, hover over your message, click the three dots, then click edit message.`);
         }, 1000);
 
         // wait 1 minute before checking the message again
@@ -545,7 +545,7 @@ loadAlex().then(() => {
           } catch (error) {
             console.error("Error checking for message edit:", error);
           }
-        }, 10000); // 1 minute wait
+        }, 60000); // 1 minute wait
       } else if (attempts > 1) { // if the message has been edited and is now fine after finding insensitive words
         talksWithHim(channel, user, "Thank you for updating your message!");
       } 
