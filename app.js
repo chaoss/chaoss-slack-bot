@@ -219,7 +219,7 @@ async function talksWithHimButton(channel, user, message, flaggedWord) {
             type: 'button',
             text: {
               type: 'plain_text',
-              text: 'Learn More',
+              text: 'Why?',
             },
             style: 'primary',
             action_id: 'learn_more',
