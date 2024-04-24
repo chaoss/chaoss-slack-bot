@@ -556,4 +556,25 @@ loadAlex().then(() => {
   }});
 });
 
+const helpText = `
+*Available Commands for Admins:*
+
+*!addword <word> <reason>* - Adds a word to the bad words list with a specific reason. Usage: \`!addword example "This is a bad word because..."\`
+*!removeword <word>* - Removes a word from the bad words list. Usage: \`!removeword example\`
+`;
+
+app.message(/^!help$/i, async ({ message, client, say }) => {
+  const userInfo = await client.users.info({ user: message.user });
+
+  if (userInfo.user.is_admin) { // Ensure that the user is an admin
+    await say({
+      channel: message.channel,
+      text: helpText
+    });
+  } else {
+    //await say("Sorry, you do not have the permissions to access this command.");
+  }
+});
+
+
 
