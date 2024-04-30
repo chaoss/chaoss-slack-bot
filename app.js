@@ -121,7 +121,7 @@ app.event("team_join", async ({ event, client, logger }) => {
 
 // *******When a user join chaossafrica channel, the bot sends a welcome message and the goal of the community******//
 app.event("member_joined_channel", async ({ event, client, logger }) => {
-  joinChaossAfrica.joinChaossAfrica(event, client, logger);
+  joinChaossAfrica(event, client, logger);
 });
 
 // ************************************************************************************************//
