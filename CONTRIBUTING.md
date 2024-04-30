@@ -63,6 +63,20 @@ $ git config --global user.email johndoe@example.com
 
 Any pull requests containing commits that are not signed off will not be eligible for merge until the commits have been signed off.
 
+### How to Fix a Failed DCO Check
+Sometimes, you might forget to sign off your commits. We understand, but your pull request will fail the DCO check, and we will not be able to merge it. If this happens, here is how you can fix it:
+
+- To fix a failed DCO check, go to the pull request page and scroll down to the section that shows the successful and failed checks. It is located just above the new comment text area. 
+
+<img width="1437" alt="Screenshot 2023-10-10 at 1 31 32 PM" src="https://github.com/chaoss/chaoss-slack-bot/assets/71160347/c8dab20a-e6e9-4b17-82ab-4f54f9c7d42c">
+
+- Click on the DCO details, and follow the instructions to fix the problem.
+
+ <img width="1437" alt="Screenshot 2023-10-10 at 1 33 43 PM" src="https://github.com/chaoss/chaoss-slack-bot/assets/71160347/d6c04196-e686-42bd-be77-62bff80ce895">
+
+- You can also follow [this guide](https://www.secondstate.io/articles/dco/) for an alternative approach. 
+
+
 ## Keeping in sync with the Chaoss Slack Bot Repository
 Remember to sync your fork with the main branch regularly. To do this:
 Make sure to be in the root folder of the project and the branch should be master branch and type
@@ -75,6 +89,53 @@ Now you have your upstream setup in your local machine,whenever you need to make
 $ git pull upstream master
 $ git push origin master
 ```
+
+# Contributing to the wiki
+## Adding or editing wiki pages
+
+You can add and edit wiki pages directly on GitHub or locally using the command line.
+
+Wikis are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud and GitHub Enterprise Server. For more information, see [GitHub’s plans.](https://docs.github.com/en/get-started/learning-about-github/githubs-plans)
+
+## Adding wiki pages
+1. On GitHub.com, navigate to the main page of the repository.
+2. Under your repository name, click **Wiki**.
+![wiki](https://docs.github.com/assets/cb-50195/mw-1440/images/help/wiki/wiki-menu-link.webp)
+3. In the upper-right corner of the wiki, click **New Page**.
+4. Optionally, to write in a format other than Markdown, use the "Edit mode" dropdown to choose a different format.
+![Edit mode](https://docs.github.com/assets/cb-109300/mw-1440/images/help/wiki/wiki-edit-mode-dropdown.webp)
+5. Use the text editor to add your page's content.
+6. In the "Edit message" field, type a commit message describing the new file you’re adding.
+7. To commit your changes to the wiki, click Save Page.
+
+## Editing wiki pages
+1. On GitHub.com, navigate to the main page of the repository.
+2. Under your repository name, click **Wiki**.
+![wiki](https://docs.github.com/assets/cb-50195/mw-1440/images/help/wiki/wiki-menu-link.webp)
+3. Using the wiki sidebar on the right, navigate to the page you want to change. In the upper-right corner of the page, click **Edit**.
+4. Use the text editor to edit the page's content.
+5. In the "Edit message" field, type a commit message describing the new file you’re adding.
+6. To commit your changes to the wiki, click **Save Page**.
+
+
+## Adding or editing wiki pages locally
+Wikis are part of Git repositories, so you can make changes locally and push them to your repository using a Git workflow.
+
+### Cloning wikis to your computer
+Every wiki provides an easy way to clone its contents down to your computer. Once you've created an initial page on GitHub, you can clone the repository to your computer with the provided URL:
+
+```
+$ git clone https://github.com/chaoss/chaoss-slack-bot.wiki.git 
+# Clones the wiki locally
+```
+Once you have cloned the wiki, you can add new files, edit existing ones, and commit your changes. You and your collaborators can create branches when working on wikis, but only changes pushed to the default branch will be made live and available to your readers.
+
+## About wiki 
+The filename determines the title of your wiki page, and the file extension determines how your wiki content is rendered.
+
+Wikis use our [open-source Markup library](https://github.com/github/markup) to convert the markup, and it determines which converter to use by a file's extension. For example, if you name a file foo.md or foo.markdown, wiki will use the Markdown converter, while a file named foo.textile will use the Textile converter.
+
+Don't use the following characters in your wiki page's titles: ```\ / : * ? " < > |```. Users on certain operating systems won't be able to work with filenames containing these characters. Be sure to write your content using a markup language that matches the extension, or your content won't render properly.
 
 # Community Resources
 ## CHAOSS

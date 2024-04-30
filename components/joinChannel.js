@@ -1,5 +1,4 @@
 const testChannel = "C03D3L8TNMD";
-
 async function memberJoin(event, client, logger) {
 	try {
 		return await client.chat.postMessage({

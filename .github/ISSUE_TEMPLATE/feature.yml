@@ -1,0 +1,55 @@
+name: Feature Request
+description: Suggest an idea for this project
+title: "[Feature]: Short description of the feature"
+labels: ["enhancement"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: eg. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: problem
+    attributes:
+      label: The Problem
+      description: What problem do you hope to solve with this feature?
+      placeholder: e.g. Our Slack Bot has the feature to send site-wide DMs to all the members of the CHAOSS slack channel. I would love to activate this feature for sending our community survey.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: How to Fix It
+      description: What do you think needs to be done to fix this problem?
+      placeholder: e.g. Check the app.js file and go to line 114; there is a DM set up...
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the feature request here (links, screenshots, text, etc).
+      placeholder: |
+        e.g. Message to add in the line of code:
+        Hello there! We recently launched a community survey to get your feedback...
+  - type: textarea
+    id: path
+    attributes:
+      label: Specific File Path(s) on the Repo to be Modified/Refered to
+      description: Please share the specific file path(s) to be modified/refered to in the codebase.
+      placeholder: |
+        e.g. https://github.com/chaoss/chaoss-slack-bot/blob/main/app.js
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/chaoss/.github/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -1,0 +1,75 @@
+name: Bug Report
+description: Please file a bug report to help us improve the project
+title: "[Bug]: Short description of the problem"
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Details
+      description: How can we get in touch with you if we need more info?
+      placeholder: eg. email@example.com
+    validations:
+      required: false
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear and concise description of what the bug is.
+      placeholder: Tell us what you see! If applicable, add screenshots to help explain the problem.
+      value: "A bug happened!"
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: What should happen? / What did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: os-version
+    attributes:
+      label: Your Environment
+      description: Tell us what operating system you're using, along with the version
+      placeholder: e.g. Windows 10, Ubuntu 18.04, macOS 10.14.6
+    validations:
+      required: true
+  - type: textarea
+    id: bug-reproduction
+    attributes:
+      label: Steps to Reproduce the Behavior
+      description: Please share with us a minimalistic template to reproduce the bug.
+      placeholder: |
+        1. In this environment...
+        2. With this config...
+        3. Run/Click on '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Is there anything else you can add about the problem?
+      placeholder: eg. related issues, suggestions on how to fix, links for us to have context, eg. stackoverflow, gitter, etc.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/chaoss/.github/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

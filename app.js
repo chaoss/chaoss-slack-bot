@@ -3,11 +3,13 @@ const newbie = require('./components/newbie');
 const theActions = require('./components/actions/actionResponses');
 const mentorshipAction = require('./components/actions/mentorshipAction');
 const mentorshipResponses = require('./components/actions/mentorshipResponses');
-
-const memberJoinChannel = require('./components/joinChannel');
-
 const outreachyPrompt = require('./components/outreachyPrompt');
+
+const joinChaossAfrica = require('./components/chaossAfrica/joinChaossAfrica');
+const chaossAfrica = require('./components/chaossAfrica/africa');
+
 const joinTeam = require('./components/joinTeam');
+const memberJoinChannel = require('./components/joinChannel');
 
 const dotenv = require('dotenv');
 
@@ -26,6 +28,11 @@ const app = new App({
 //This responds to a member when they  type newbie in any channel where the bot is present
 app.message(/newbie/i, async ({ message, client, logger }) => {
   newbie.newHere(message, client, logger);
+});
+
+//This responds to a member when they  type africa in any channel where the bot is present
+app.message(/africa-info/i, async ({ message, client, logger }) => {
+  chaossAfrica.chaossAfrica(message, client, logger);
 });
 
 // handle the button click and show the responses
@@ -86,6 +93,10 @@ app.action('learn_something_else', async ({ ack, say }) => {
   theActions.learn_something_else(say);
 });
 
+app.action('faqs', async ({ ack, say }) => {
+  await ack();
+  theActions.faqs(say);
+});
 //****************************************** */
 
 // When a user joins the team, the bot sends a DM to the newcommer asking them how they would like to contribute
@@ -95,6 +106,13 @@ app.event('team_join', async ({ event, client, logger }) => {
 });
 
 //*********************************************************** */
+
+// *******When a user join chaossafrica channel, the bot sends a welcome message and the goal of the community******//
+app.event('member_joined_channel', async({ event, client, logger }) => { 
+  joinChaossAfrica.joinChaossAfrica(event, client, logger) 
+})
+
+// ************************************************************************************************//
 
 // *************Send message about outreachy**********/
 app.message(/outreachy/i, async ({ message, say, logger }) => {

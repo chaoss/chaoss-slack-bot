@@ -139,6 +139,22 @@ async function joinTeamSlack(event, client, logger) {
             },
           ],
         },
+        {
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
+                text: 'Go through the FAQs',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'faqs',
+              action_id: 'faqs',
+            },
+          ],
+        },
       ],
       text: `Welcome to the team, <@${event.user.id}>! 🎉.`,
     });
