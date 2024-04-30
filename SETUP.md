@@ -3,7 +3,7 @@
 *   First, we recommend [creating a new workspace](https://slack.com/get-started#create) where you won’t disrupt real work getting done.
 
 *   [Create a Slack app](https://api.slack.com/apps/new) and install it to the new workspace you created.
-*   After clicking a create a Slack app two options should appear. Choose from scratch to build 
+*   After clicking a create a Slack app two options should appear. Choose the from scratch option to use this configurable UI . 
 *   ![image](https://github.com/ise8933/chaoss-slack-bot/assets/90360951/e085ea5b-b98d-47cc-8c2d-c1563fddf88b)
 *   Click on the `Create App` button to go to the **Basic Information** page.
     ![](https://slack.dev/bolt-js/assets/basic-information-page.png)
