@@ -74,9 +74,12 @@ To listen for events happening in a Slack workspace (like when a message is post
 CHAOSS Slack Bot uses Socket Mode.
 
 *   Head to your app’s configuration page (click on the app from your [app management page](https://api.slack.com/apps)). Navigate to Socket Mode on the left side menu and toggle to enable.
+  
+   ![image](https://github.com/ise8933/chaoss-slack-bot/assets/90360951/56a53067-36ef-456c-aa72-e3287a3267f7)
 
 *   Go to **Basic Information** and scroll down under the App Token section and click **Generate Token and Scopes** to generate an app token. Add the `connections:write` scope to this token and save the generated xapp token.
-
+    ![image](https://github.com/ise8933/chaoss-slack-bot/assets/90360951/36471450-4560-4c81-8bdb-06c32fd83843)
+  
 *   Scroll down to **Subscribe to Bot Events** and select the events you want your bot to listen to. CHAOSS Slack Bot currently subcribes to [these events](https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit#heading=h.vaz3oyzblsm7). The other available events are documented at [api.slack.com/events](api.slack.com/events).
 
 *   Follow the rest of the instructions in the [CONTRIBUTING.md](https://github.com/chaoss/chaoss-slack-bot/blob/main/CONTRIBUTING.md).
