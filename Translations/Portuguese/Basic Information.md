@@ -1,21 +1,21 @@
+# [Informação básica](https://github.com/chaoss/chaoss-slack-bot/wiki/Informações-básica)
 
-[Basic Information](https://github.com/chaoss/chaoss-slack-bot/wiki/Basic-Information)
+### [Funções do bot](https://github.com/chaoss/chaoss-slack-bot/wiki/Informa%C3%A7%C3%B5es-b%C3%A1sica#funcionalidades-do-bot)
 
-> ### Informações básica
+- Quando um usuário se junta à equipe, envia uma mensagem em um canal pré-definido pedindo que se apresentem.
 
-> #### Funcionalidades do bot
->
-> - Quando um usuário ingressa na equipe, envia uma mensagem em um canal predefinido solicitando que se apresente.
-> - Quando um usuário ingressa na equipe, envia uma mensagem interativa via DM para determinar como pretende contribuir e fornecer os recursos relevantes.
-> - Quando um usuário digita “newbie” em um canal ou diretamente para o bot, ele envia uma mensagem interativa mostrando como você pode contribuir.
-> - Quando um usuário digita “outreachy” em um canal ou diretamente para o bot, ele responde com informações sobre Outreachy.
-> - Responde quando um usuário diz  "hello", "hey" or "hi".
-> - Pode enviar um DM para todos os usuários do espaço de trabalho, acionado pela mensagem “intro-CHAOSS”.
+- Quando um usuário se junta à equipe, envia uma mensagem interativa via DM para determinar como eles pretendem contribuir e fornecer os recursos relevantes.
 
-> #### Tokens no nível do aplicativo
+- Quando um usuário digita "newbie" em um canal ou diretamente para o bot, envia uma mensagem interativa mostrando maneiras de contribuir.
 
-> |Nome do Token | Escopo |
-> |--------------|---------------|
-> |welcome-token | connections:write|
+- Quando um usuário digita "outreachy" em um canal ou diretamente para o bot, responde com informações sobre o Outreachy.
 
+- Responde quando um usuário diz "Ola", "ei" ou "Oi".
 
+- Pode enviar uma DM para todos os usuários no espaço de trabalho, acionada pela mensagem "intro-CHAOSS".
+
+### [Tokens no nível do aplicativo](https://github.com/chaoss/chaoss-slack-bot/wiki/Informa%C3%A7%C3%B5es-b%C3%A1sica#tokens-no-n%C3%ADvel-do-aplicativo)
+
+| Nome do Token   | Escopo            |
+| ---------------- | ----------------- |
+| token de boas-vindas   | conexões:escrever |
