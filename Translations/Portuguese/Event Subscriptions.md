@@ -1,4 +1,4 @@
-# [Escopos de token do bot](https://github.com/chaoss/chaoss-slack-bot/wiki/Bot-Token-Scopes-&-Event-Subscriptions#bot-token-scopes)
+# [Escopos de token do bot](https://github.com/chaoss/chaoss-slack-bot/wiki/Escopos-de-token-do-bot-e-Assinaturas-de-eventos#Escopos-de-token-do-bot)
 
 Escopos que controlam o que seu aplicativo pode acessar. Esta é uma lista de escopos habilitados
 para bot CHAOSS Slack. Uma lista abrangente de escopos de permissão está disponível em [api.slack.com/scopes.](https://api.slack.com/scopes)
@@ -23,7 +23,7 @@ para bot CHAOSS Slack. Uma lista abrangente de escopos de permissão está dispo
 | [users:read](https://api.slack.com/scopes/users:read)                     | Veja pessoas em um espaço de trabalho                                                                       |
 | [users:write](https://api.slack.com/scopes/users:write)                   | Defina presença para boas-vindas ao CHAOSS                                                                  |
 
-# [Assinaturas de eventos](https://github.com/chaoss/chaoss-slack-bot/wiki/Bot-Token-Scopes-&-Event-Subscriptions#event-subscriptions)
+# [Assinaturas de eventos](https://github.com/chaoss/chaoss-slack-bot/wiki/Escopos-de-token-do-bot-e-Assinaturas-de-eventos#Assinaturas-de-eventos)
 
 Estes são os eventos do bot inscritos. Os outros eventos disponíveis estão documentados em [ api.slack.com/events.](https://api.slack.com/events)
 
