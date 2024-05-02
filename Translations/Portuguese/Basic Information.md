@@ -1,6 +1,6 @@
-# [Informação básica](https://github.com/chaoss/chaoss-slack-bot/wiki/Informação-básica#Informação-básica)
+# [Informação básica](https://github.com/chaoss/chaoss-slack-bot/wiki/Informações-básica)
 
-### [Funções do bot](https://github.com/chaoss/chaoss-slack-bot/wiki/Funções-do-bot#Funções-do-bot)
+### [Funções do bot](https://github.com/chaoss/chaoss-slack-bot/wiki/Informa%C3%A7%C3%B5es-b%C3%A1sica#funcionalidades-do-bot)
 
 - Quando um usuário se junta à equipe, envia uma mensagem em um canal pré-definido pedindo que se apresentem.
 
@@ -14,7 +14,7 @@
 
 - Pode enviar uma DM para todos os usuários no espaço de trabalho, acionada pela mensagem "intro-CHAOSS".
 
-### [Tokens no nível do aplicativo](https://github.com/chaoss/chaoss-slack-bot/wiki/Basic-Information#basic-information)
+### [Tokens no nível do aplicativo](https://github.com/chaoss/chaoss-slack-bot/wiki/Informa%C3%A7%C3%B5es-b%C3%A1sica#tokens-no-n%C3%ADvel-do-aplicativo)
 
 | Nome do Token   | Escopo            |
 | ---------------- | ----------------- |
