@@ -155,7 +155,7 @@ N/B: If you're fixing an existing issue, you don't need to open a new one. Just 
 - [A Complete Guide to DCO for Open Source Developers](https://www.secondstate.io/articles/dco/)
 
 ## CHAOSS Slack Bot
-- [CHAOSS Slack Bot documentation](https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit?usp=sharing)
+- [CHAOSS Slack Bot documentation](https://github.com/chaoss/chaoss-slack-bot/wiki)
 
 ## Slack API & Bolt for JavaScript
 - [Getting started with Bolt for JavaScript](https://slack.dev/bolt-js/tutorial/getting-started)
