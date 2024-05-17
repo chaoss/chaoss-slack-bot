@@ -109,7 +109,7 @@ git remote add upstream https://github.com/chaoss/chaoss-slack-bot.wiki.git
 git fetch upstream staging
 ```
 
-**Keeping your fork in sync**
+### Keeping your fork in sync
 ```
 git checkout staging
 git fetch upstream staging
@@ -117,14 +117,15 @@ git merge upstream/staging
 git push origin staging
 ```
 
-**Submitting changes to your fork**
+### Submitting changes to your fork
 ```
 git checkout staging
 git add .
 git commit -s -m "descriptive commit message"
 git push origin staging
 ```
-**Submitting changes to the main repository**
+
+### Submitting changes to the main repository
 When you're ready to submit, you need to [open an issue](https://github.com/chaoss/chaoss-slack-bot/issues) and provide the following:
 - Link to your repository.
 - Description to the change you've done.
