@@ -17,8 +17,8 @@ For more information about this project, read the [CHAOSS Slack Bot Docs](https:
 - Can send a DM to all users in the workspace, triggered by the message “intro-CHAOSS”.
 
 ## Getting Started
-If you're interested in cloning our bot for your Slack workspace, you can follow the steps in the [CONTRIBUTING.md](https://github.com/chaoss/chaoss-slack-bot/blob/main/CONTRIBUTING.md) to setup, and [https://slack.dev/bolt-js/deployments/heroku](https://slack.dev/bolt-js/deployments/heroku) or [https://slack.dev/bolt-js/deployments/aws-lambda](https://slack.dev/bolt-js/deployments/aws-lambda) to deploy.
+If you're interested in cloning our bot for your Slack workspace, you can follow the steps in the [CONTRIBUTING.md](/CONTRIBUTING.md) to setup, and [https://slack.dev/bolt-js/deployments/heroku](https://slack.dev/bolt-js/deployments/heroku) or [https://slack.dev/bolt-js/deployments/aws-lambda](https://slack.dev/bolt-js/deployments/aws-lambda) to deploy.
 
 ## Contributing
 
-To contribute to CHAOSS Slack bot, please follow the guidelines found in our [CONTRIBUTING.md](https://github.com/chaoss/chaoss-slack-bot/blob/main/CONTRIBUTING.md) and our [Code of Conduct](https://github.com/chaoss/.github/blob/main/CODE_OF_CONDUCT.md). We love pull requests! We welcome contributions from everyone, whether it's your 1st or your 100th. If you get stuck, please feel free to [ask for help](https://github.com/chaoss/chaoss-slack-bot/issues/new)!
+To contribute to CHAOSS Slack bot, please follow the guidelines found in our [CONTRIBUTING.md](/CONTRIBUTING.md) and our [Code of Conduct](/CODE_OF_CONDUCT.md). We love pull requests! We welcome contributions from everyone, whether it's your 1st or your 100th. If you get stuck, please feel free to [ask for help](https://github.com/chaoss/chaoss-slack-bot/issues/new)!
