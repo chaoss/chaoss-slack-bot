@@ -91,49 +91,11 @@ $ git push origin master
 ```
 
 # Contributing to the wiki
+## Adding or editing wiki pages
 
-- Fork the repo
-- Navigate to [https://github.com/](https://github.com/)<YOUR_USERNAME>/chaoss-slack-bot/wiki
-- Hit ```Create the first page``` (You may get an error, that's okay)
-- Navigate to https://github.com/<YOUR_USERNAME>/chaoss-slack-bot/wiki again and you will see the wiki updated.
-- Clone the forked repo
+You can add and edit wiki pages directly on GitHub or locally using the command line.
 
-```
-git clone https://github.com/<YOUR_USERNAME>/chaoss-slack-bot/wiki.git
-```
-- Add the upstream:
-```
-git remote add upstream https://github.com/chaoss/chaoss-slack-bot.wiki.git
-```
-- Fetch the latest updates from the staging branch:
-```
-git fetch upstream staging
-```
-
-#### Keeping your fork in sync
-
-```
-git checkout staging
-git fetch upstream staging
-git merge upstream/staging
-git push origin staging
-```
-
-#### Submitting changes to your fork
-
-```
-git checkout staging
-git add .
-git commit -s -m "descriptive commit message"
-git push origin staging
-```
-
-#### Submitting changes to the main repository
-When you're ready to submit, you need to [open an issue](https://github.com/chaoss/chaoss-slack-bot/issues) and provide the following:
-- Link to your repository.
-- Description to the change you've done.
-
-N/B: If you're fixing an existing issue, you don't need to open a new one. Just submit your changes there.
+Wikis are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud and GitHub Enterprise Server. For more information, see [GitHub’s plans.](https://docs.github.com/en/get-started/learning-about-github/githubs-plans)
 
 ## Adding wiki pages
 1. On GitHub.com, navigate to the main page of the repository.
