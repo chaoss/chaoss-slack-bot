@@ -1,17 +1,18 @@
-const { App } = require('@slack/bolt');
-const newbie = require('./components/newbie');
-const theActions = require('./components/actions/actionResponses');
-const mentorshipAction = require('./components/actions/mentorshipAction');
-const mentorshipResponses = require('./components/actions/mentorshipResponses');
-const outreachyPrompt = require('./components/outreachyPrompt');
+const { App } = require("@slack/bolt");
+const newbie = require("./components/newbie");
+const theActions = require("./components/actions/actionResponses");
+const mentorshipAction = require("./components/actions/mentorshipAction");
+const mentorshipResponses = require("./components/actions/mentorshipResponses");
+const outreachyPrompt = require("./components/outreachyPrompt");
+const {
+  chaossAfricaInfo,
+  joinChaossAfrica,
+} = require("./components/chaossAfrica");
 
-const joinChaossAfrica = require('./components/chaossAfrica/joinChaossAfrica');
-const chaossAfrica = require('./components/chaossAfrica/africa');
+const joinTeam = require("./components/joinTeam");
+const memberJoinChannel = require("./components/joinChannel");
 
-const joinTeam = require('./components/joinTeam');
-const memberJoinChannel = require('./components/joinChannel');
-
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -32,75 +33,80 @@ app.message(/newbie/i, async ({ message, client, logger }) => {
 
 //This responds to a member when they  type africa in any channel where the bot is present
 app.message(/africa-info/i, async ({ message, client, logger }) => {
-  chaossAfrica.chaossAfrica(message, client, logger);
+  chaossAfricaInfo(message, client, logger);
 });
 
 // handle the button click and show the responses
-app.action('develop', async ({ ack, say }) => {
+app.action("develop", async ({ ack, say }) => {
   await ack();
   theActions.develop(say);
 });
 
-app.action('joinMeet', async ({ ack, say }) => {
+app.action("joinMeet", async ({ ack, say }) => {
   // Acknowledge the action
   await ack();
   theActions.joinMeet(say);
 });
 
-app.action('contribute', async ({ ack, say }) => {
+app.action("contribute", async ({ ack, say }) => {
   // Acknowledge the action
   await ack();
   theActions.contribute(say);
 });
 
-app.action('helpWithWebsite', async ({ ack, say }) => {
+app.action("helpWithWebsite", async ({ ack, say }) => {
   await ack();
   theActions.helpWithWebsite(say);
 });
 
-app.action('docs', async ({ ack, say }) => {
+app.action("docs", async ({ ack, say }) => {
   await ack();
   theActions.docs(say);
 });
 
-app.action('mentorship', async ({ ack, say }) => {
+app.action("mentorship", async ({ ack, say }) => {
   await ack();
   mentorshipAction.mentorship(say);
 });
 
 // this handler is for the nested radio buttons above
-app.action('mentorship_selection', async ({ action, ack, say }) => {
+app.action("mentorship_selection", async ({ action, ack, say }) => {
   await ack();
   console.log(action.selected_option.value);
-  if (action.selected_option.value === 'outreachy') {
+  if (action.selected_option.value === "outreachy") {
     mentorshipResponses.outreachy(say);
   }
-  if (action.selected_option.value === 'gsoc') {
-    mentorshipResponses.gsoc(say);
+  if (action.selected_option.value === "gsoc") {
+    mentorshipResponses.googleSummerOfCode(say);
   }
-  if (action.selected_option.value === 'gsod') {
-    mentorshipResponses.gsod(say);
+  if (action.selected_option.value === "gsod") {
+    mentorshipResponses.googleSeasonOfDocs(say);
   }
 });
 
-app.action('implement_metrics', async ({ ack, say }) => {
+app.action("implement_metrics", async ({ ack, say }) => {
   await ack();
   theActions.implement_metrics(say);
 });
 
-app.action('learn_something_else', async ({ ack, say }) => {
+app.action("regional_chapters", async ({ ack, say }) => {
+  await ack();
+  theActions.regional_chapters(say);
+});
+
+app.action("learn_something_else", async ({ ack, say }) => {
   await ack();
   theActions.learn_something_else(say);
 });
 
-app.action('faqs', async ({ ack, say }) => {
+app.action("faqs", async ({ ack, say }) => {
   await ack();
   theActions.faqs(say);
 });
 //****************************************** */
 
 // When a user joins the team, the bot sends a DM to the newcommer asking them how they would like to contribute
-app.event('team_join', async ({ event, client, logger }) => {
+app.event("team_join", async ({ event, client, logger }) => {
   joinTeam.joinTeamSlack(event, client, logger); // this is the function that sends the DM
   memberJoinChannel.memberJoin(event, client, logger); // this is for the #projectbot channel
 });
@@ -108,9 +114,9 @@ app.event('team_join', async ({ event, client, logger }) => {
 //*********************************************************** */
 
 // *******When a user join chaossafrica channel, the bot sends a welcome message and the goal of the community******//
-app.event('member_joined_channel', async({ event, client, logger }) => { 
-  joinChaossAfrica.joinChaossAfrica(event, client, logger) 
-})
+app.event("member_joined_channel", async ({ event, client, logger }) => {
+  joinChaossAfrica.joinChaossAfrica(event, client, logger);
+});
 
 // ************************************************************************************************//
 
@@ -119,7 +125,7 @@ app.message(/outreachy/i, async ({ message, say, logger }) => {
   outreachyPrompt.outreachyMessage(message, say, logger);
 });
 
-// *******************************DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT TO INTRODUCE THE BOT************/
+// *******************************DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT************/
 /*
 let usersStore = {};
 
@@ -154,10 +160,8 @@ function saveUsers(usersArray) {
   });
 }
 */
-//************ */
-(async () => {
-  // Start your app
-  await app.start(process.env.PORT || 3000);
 
-  console.log('⚡️ Bolt app is running!');
+(async () => {
+  await app.start(process.env.PORT || 3000);
+  console.log("⚡️ Bolt app is running!");
 })();

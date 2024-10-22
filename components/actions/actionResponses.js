@@ -1,3 +1,5 @@
+const config = require("../../config");
+
 async function develop(say) {
   return await say(
     `You clicked *Develop Metrics* \n
@@ -44,19 +46,45 @@ async function implement_metrics(say) {
   );
 }
 
+async function regional_chapters(say) {
+  const baseUrl = `${config.workspaceUrl}/archives`;
+  const { africa, asia, balkans, lac } = config.channels;
+  return await say({
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `You clicked *Join a Regional Chapter*
+          \nOur local chapters are ways to collaborate with others in your region. You can learn more about them here: https://chaoss.community/kb/local-chapters. You can also check out our different regional chapter channels and join one of them depending on your region:
+
+                  - <#${africa}> for CHAOSS Africa
+                  - <#${asia}> for CHAOSS Asia
+                  - <#${balkans}> for CHAOSS Balkans
+                  - <#${lac}> for CHAOSS Latin America & Caribbean`,
+        },
+      },
+    ],
+    text: `You clicked *Join a Regional Chapter*. 
+    Our local chapters are ways to collaborate with others in your region. You can join the channels:
+    CHAOSS Africa: ${baseUrl}/${africa}
+    CHAOSS Asia: ${baseUrl}/${asia}
+    CHAOSS Balkans: ${baseUrl}/${balkans}
+    CHAOSS Latin America and Caribbean: ${baseUrl}/${lac}`,
+  });
+}
+
 async function learn_something_else(say) {
   return await say(
     `You clicked *Learn About Something Else*\n
-    We encourage you to read through our Community Documentation: https://chaoss.community/kb-chaoss-community/, and if you still can't find what you're looking for, feel free to ask your question in our <#C0207C3RETX> slack channel.`
-
+    We encourage you to read through our Community Documentation: https://chaoss.community/kb-chaoss-community/, and if you still can't find what you're looking for, feel free to ask your question in our <#${config.channels.newcomers}> slack channel.`
   );
 }
 
 async function faqs(say) {
   return await say(
     `You clicked *FAQs*\n
-    We encourage you to read through our Frequently Asked Questions: https://handbook.chaoss.community/community-handbook/about/general-faq, and if you still can't find what you're looking for, feel free to ask your question in our <#C0207C3RETX> slack channel.`
-
+    We encourage you to read through our Frequently Asked Questions: https://handbook.chaoss.community/community-handbook/about/general-faq, and if you still can't find what you're looking for, feel free to ask your question in our <#${config.channels.newcomers}> slack channel.`
   );
 }
 
@@ -67,6 +95,7 @@ module.exports = {
   contribute,
   helpWithWebsite,
   implement_metrics,
+  regional_chapters,
   learn_something_else,
-  faqs
+  faqs,
 };
