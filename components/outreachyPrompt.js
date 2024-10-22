@@ -1,8 +1,8 @@
-const constantData = require("./actions/constants/constants.json");
+const config = require("../config");
 
 async function outreachyMessage(message, say, logger) {
   try {
-    if (constantData.Outreachy.status) {
+    if (config.outreachy.status) {
       // return await say(`Whats up segment <@${message.user}>!`);
       return await say({
         channel: message.user,

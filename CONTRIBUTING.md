@@ -91,51 +91,47 @@ $ git push origin master
 ```
 
 # Contributing to the wiki
-## Adding or editing wiki pages
 
-You can add and edit wiki pages directly on GitHub or locally using the command line.
-
-Wikis are available in public repositories with GitHub Free and GitHub Free for organizations, and in public and private repositories with GitHub Pro, GitHub Team, GitHub Enterprise Cloud and GitHub Enterprise Server. For more information, see [GitHub’s plans.](https://docs.github.com/en/get-started/learning-about-github/githubs-plans)
-
-## Adding wiki pages
-1. On GitHub.com, navigate to the main page of the repository.
-2. Under your repository name, click **Wiki**.
-![wiki](https://docs.github.com/assets/cb-50195/mw-1440/images/help/wiki/wiki-menu-link.webp)
-3. In the upper-right corner of the wiki, click **New Page**.
-4. Optionally, to write in a format other than Markdown, use the "Edit mode" dropdown to choose a different format.
-![Edit mode](https://docs.github.com/assets/cb-109300/mw-1440/images/help/wiki/wiki-edit-mode-dropdown.webp)
-5. Use the text editor to add your page's content.
-6. In the "Edit message" field, type a commit message describing the new file you’re adding.
-7. To commit your changes to the wiki, click Save Page.
-
-## Editing wiki pages
-1. On GitHub.com, navigate to the main page of the repository.
-2. Under your repository name, click **Wiki**.
-![wiki](https://docs.github.com/assets/cb-50195/mw-1440/images/help/wiki/wiki-menu-link.webp)
-3. Using the wiki sidebar on the right, navigate to the page you want to change. In the upper-right corner of the page, click **Edit**.
-4. Use the text editor to edit the page's content.
-5. In the "Edit message" field, type a commit message describing the new file you’re adding.
-6. To commit your changes to the wiki, click **Save Page**.
-
-
-## Adding or editing wiki pages locally
-Wikis are part of Git repositories, so you can make changes locally and push them to your repository using a Git workflow.
-
-### Cloning wikis to your computer
-Every wiki provides an easy way to clone its contents down to your computer. Once you've created an initial page on GitHub, you can clone the repository to your computer with the provided URL:
-
+- Fork the repo
+- Navigate to https://github.com/<YOUR_USERNAME>/chaoss-slack-bot/wiki
+- Hit ```Create the first page``` (You may get an error, that's okay)
+- Navigate to https://github.com/<YOUR_USERNAME>/chaoss-slack-bot/wiki again and you will see the wiki updated.
+- Clone the forked repo 
 ```
-$ git clone https://github.com/chaoss/chaoss-slack-bot.wiki.git 
-# Clones the wiki locally
+git clone https://github.com/<YOUR_USERNAME>/chaoss-slack-bot/wiki.git
 ```
-Once you have cloned the wiki, you can add new files, edit existing ones, and commit your changes. You and your collaborators can create branches when working on wikis, but only changes pushed to the default branch will be made live and available to your readers.
+- Add the upstream:
+```
+git remote add upstream https://github.com/chaoss/chaoss-slack-bot.wiki.git
+```
+- Fetch the latest updates from the staging branch:
+```
+git fetch upstream staging
+```
 
-## About wiki 
-The filename determines the title of your wiki page, and the file extension determines how your wiki content is rendered.
+### Keeping your fork in sync
+```
+git checkout staging
+git fetch upstream staging
+git merge upstream/staging
+git push origin staging
+```
 
-Wikis use our [open-source Markup library](https://github.com/github/markup) to convert the markup, and it determines which converter to use by a file's extension. For example, if you name a file foo.md or foo.markdown, wiki will use the Markdown converter, while a file named foo.textile will use the Textile converter.
+### Submitting changes to your fork
+```
+git checkout staging
+git add .
+git commit -s -m "descriptive commit message"
+git push origin staging
+```
 
-Don't use the following characters in your wiki page's titles: ```\ / : * ? " < > |```. Users on certain operating systems won't be able to work with filenames containing these characters. Be sure to write your content using a markup language that matches the extension, or your content won't render properly.
+### Submitting changes to the main repository
+When you're ready to submit, you need to [open an issue](https://github.com/chaoss/chaoss-slack-bot/issues) and provide the following:
+- Link to your repository.
+- Description to the change you've done.
+
+N/B: If you're fixing an existing issue, you don't need to open a new one. Just submit your changes there.
+
 
 # Community Resources
 ## CHAOSS
@@ -159,7 +155,7 @@ Don't use the following characters in your wiki page's titles: ```\ / : * ? " < 
 - [A Complete Guide to DCO for Open Source Developers](https://www.secondstate.io/articles/dco/)
 
 ## CHAOSS Slack Bot
-- [CHAOSS Slack Bot documentation](https://docs.google.com/document/d/1NJd-nNKUNb3Q0lRb5cfmUU8kpRcYGjh-vPqpk4CCvic/edit?usp=sharing)
+- [CHAOSS Slack Bot documentation](https://github.com/chaoss/chaoss-slack-bot/wiki)
 
 ## Slack API & Bolt for JavaScript
 - [Getting started with Bolt for JavaScript](https://slack.dev/bolt-js/tutorial/getting-started)
