@@ -1,28 +1,25 @@
-const constantData = require('./constants/constants.json');
+const config = require("../../config");
 
 async function outreachy(say) {
-  let responseString = constantData.Outreachy.status ? constantData.Outreachy.activeStatement : constantData.Outreachy.notActiveStatement;
-  return await say(
-    responseString
-  );
+  const { status, activeStatement, notActiveStatement } = config.outreachy;
+  const response = status ? activeStatement : notActiveStatement;
+  return await say(response);
 }
 
-async function gsoc(say) {
-  let responseString = constantData.GSoC.status ? constantData.GSoC.activeStatement : constantData.GSoC.notActiveStatement;
-  return await say(
-    responseString
-  );
+async function googleSummerOfCode(say) {
+  const { status, activeStatement, notActiveStatement } = config.googleSummerOfCode;
+  let response = status ? activeStatement : notActiveStatement;
+  return await say(response);
 }
 
-async function gsod(say) {
-  let responseString = constantData.GSoD.status ? constantData.GSoD.activeStatement : constantData.GSoD.notActiveStatement;
-  return await say(
-    responseString
-  );
+async function googleSeasonOfDocs(say) {
+  const { status, activeStatement, notActiveStatement } = config.googleSeasonOfDocs;
+  let response = status ? activeStatement : notActiveStatement;
+  return await say(response);
 }
 
 module.exports = {
   outreachy,
-  gsoc,
-  gsod,
+  googleSummerOfCode,
+  googleSeasonOfDocs,
 };

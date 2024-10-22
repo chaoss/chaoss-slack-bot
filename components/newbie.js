@@ -129,6 +129,22 @@ async function newHere(message, client, logger) {
               type: 'button',
               text: {
                 type: 'plain_text',
+                text: 'Join a Regional Chapter',
+                emoji: true,
+              },
+              style: 'primary',
+              value: 'regional_chapters',
+              action_id: 'regional_chapters',
+            },
+          ],
+        },
+        {
+          type: 'actions',
+          elements: [
+            {
+              type: 'button',
+              text: {
+                type: 'plain_text',
                 text: 'Learn About Something Else',
                 emoji: true,
               },
