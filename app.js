@@ -125,6 +125,17 @@ app.message(/outreachy/i, async ({ message, say, logger }) => {
   outreachyPrompt.outreachyMessage(message, say, logger);
 });
 
+const meetingNotesLink = process.env.MEETING_NOTES_LINK;
+
+app.message(/(meeting|meeting notes|notes)/i, async ({ message, say }) => {
+  if (!meetingNotesLink) {
+    await say("The meeting notes link is currently unavailable.");
+  } else {
+    await say(`Here is the link to the meeting notes: <${meetingNotesLink}>`);
+  }
+});
+
+
 // *******************************DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT************/
 /*
 let usersStore = {};
