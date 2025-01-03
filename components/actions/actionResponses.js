@@ -88,6 +88,16 @@ async function faqs(say) {
   );
 }
 
+async function newbie_advice(say) {
+  return await say(
+    `You clicked *Get Some Advice* \n
+    Welcome to the CHAOSS Community! Starting your journey in open source can be exciting and rewarding. To help you get started, we have a detailed guide just for newcomers. \n
+    You can find it here: <https://github.com/chaoss/community/blob/main/advice_to_newcomers.md>. \n
+    This guide provides tips, best practices, and encouragement to help you make meaningful contributions. Remember, every contribution, big or small, matters. We're here to support you every step of the way! 🎉`
+  );
+}
+
+
 module.exports = {
   develop,
   joinMeet,
@@ -98,4 +108,5 @@ module.exports = {
   regional_chapters,
   learn_something_else,
   faqs,
+  newbie_advice,
 };
