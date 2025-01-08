@@ -14,6 +14,22 @@ async function joinTeamSlack(event, client, logger) {
         {
           type: 'actions',
           elements: [
+          {
+          type: 'button',
+          text: {
+          type: 'plain_text',
+          text: 'New to Open Source? Get Advice',
+          emoji: true,
+          },
+          style: 'primary',
+          value: 'newbie_advice',
+          action_id: 'newbie_advice'
+          },
+         ],
+          },
+        {
+          type: 'actions',
+          elements: [
             {
               type: 'button',
               text: {
