@@ -7,7 +7,7 @@ async function newHere(message, client, logger) {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `Welcome to *CHAOSS Community* <@${message.user}>! 🎉How would you like to get started? \n\nI want to..`,
+            text: `Welcome to *CHAOSS Community* <@${message.user}>! 🎉 How would you like to get started?`,
           },
         },
         {
