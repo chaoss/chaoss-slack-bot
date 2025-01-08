@@ -7,9 +7,25 @@ async function newHere(message, client, logger) {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `Welcome to *CHAOSS Community* <@${message.user}>! 🎉How would you like to get started? \n\nI want to..`,
+            text: `Welcome to *CHAOSS Community* <@${message.user}>! 🎉 How would you like to get started?`,
           },
         },
+        {
+           type: 'actions',
+           elements: [
+           {
+           type: 'button',
+           text: {
+           type: 'plain_text',
+           text: 'New to Open Source? Get Advice',
+           emoji: true,
+           },
+          style: 'primary',
+           value: 'newbie_advice',
+           action_id: 'newbie_advice'
+           },
+          ],
+           },
         {
           type: 'actions',
           elements: [
