@@ -8,7 +8,7 @@ async function joinTeamSlack(event, client, logger) {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `Welcome to *CHAOSS Community* <@${event.user.id}>! 🎉How would you like to get started? \n\nI want to..`,
+            text: `Welcome to *CHAOSS Community* <@${event.user.id}>! 🎉 How would you like to get started?`,
           },
         },
         {
