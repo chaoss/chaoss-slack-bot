@@ -15,7 +15,7 @@ const response =
   Object.entries(focusGroups)
     .map(([key, value]) => `- <#${config.channels[key]}> for ${value}`)
     .join("\n") +
-  `\n\nIf you have any questions, you can ask <@U0174P1MDAP> or on the channel.`;
+  `\n\nIf you have any questions, you can ask <@${config.pocs.chaossAfrica}> or on the channel.`;
 
 const a11yResponse =
   responseBase +
@@ -25,7 +25,7 @@ const a11yResponse =
         `- ${value}: ${config.workspaceUrl}/archives/${config.channels[key]}`
     )
     .join("\n") +
-  `\n\nIf you have any questions, you can ask Ruth Ikegah: ${config.workspaceUrl}/archives/D03AXJTBVNK or on the channel.`;
+  `\n\nIf you have any questions, you can ask <@${config.pocs.chaossAfrica}> or on the channel.`;
 
 async function chaossAfricaInfo(message, client, logger) {
   try {

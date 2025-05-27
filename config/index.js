@@ -1,5 +1,10 @@
 const config = {
-  workspaceUrl: "https://chaoss-workspace.slack.com",
+  workspaceUrl: "https://slackbottest-mgq4853.slack.com",
+  educationUrl: "https://chaoss.moodlecloud.com/my",
+  pocs: {
+    education: "U051Y6PHQ3H",
+    chaossAfrica: "U0174P1MDAP",
+  },
   channels: {
     newcomers: "C0207C3RETX",
     africa: "C03KC6ZERSR",

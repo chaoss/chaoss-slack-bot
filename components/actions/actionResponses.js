@@ -1,5 +1,7 @@
 const config = require("../../config");
 
+const { channels, pocs } = config;
+
 async function develop(say) {
   return await say(
     `You clicked *Develop Metrics* \n
@@ -48,7 +50,7 @@ async function implement_metrics(say) {
 
 async function regional_chapters(say) {
   const baseUrl = `${config.workspaceUrl}/archives`;
-  const { africa, asia, balkans, lac } = config.channels;
+  const { africa, asia, balkans, lac } = channels;
   return await say({
     blocks: [
       {
@@ -77,14 +79,14 @@ async function regional_chapters(say) {
 async function learn_something_else(say) {
   return await say(
     `You clicked *Learn About Something Else*\n
-    We encourage you to read through our Community Documentation: https://chaoss.community/kb-chaoss-community/, and if you still can't find what you're looking for, feel free to ask your question in our <#${config.channels.newcomers}> slack channel.`
+    We encourage you to read through our Community Documentation: https://chaoss.community/kb-chaoss-community/, and if you still can't find what you're looking for, feel free to ask your question in our <#${channels.newcomers}> slack channel.`
   );
 }
 
 async function faqs(say) {
   return await say(
     `You clicked *FAQs*\n
-    We encourage you to read through our Frequently Asked Questions: https://handbook.chaoss.community/community-handbook/about/general-faq, and if you still can't find what you're looking for, feel free to ask your question in our <#${config.channels.newcomers}> slack channel.`
+    We encourage you to read through our Frequently Asked Questions: https://handbook.chaoss.community/community-handbook/about/general-faq, and if you still can't find what you're looking for, feel free to ask your question in our <#${channels.newcomers}> slack channel.`
   );
 }
 
@@ -94,6 +96,33 @@ async function newbie_advice(say) {
     Welcome to the CHAOSS Community! Starting your journey in open source can be exciting and rewarding. To help you get started, we have a detailed guide just for newcomers. You can find it here:\n <https://github.com/chaoss/community/blob/main/advice_to_newcomers.md>. \n
     This guide provides tips, best practices, and encouragement to help you make meaningful contributions. Remember, every contribution, big or small, matters. We're here to support you every step of the way! 🎉`
   );
+}
+
+async function educational_materials(say) {
+  return await say({
+    blocks: [
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `You clicked *Access Educational Materials*\n
+Welcome to CHAOSS Education! This platform contains a variety of learning resources to help you:
+• Learn Git and GitHub basics
+• Understand open source contribution
+• Master development tools and practices
+• Work with community health metrics\n
+Access the materials here: ${config.educationUrl}`,
+        },
+      },
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `Note: You'll need to create a free account to access the content. If you have any questions, feel free to ask in <#${channels.newcomers}> or reach out to <@${pocs.education}>.`,
+        },
+      },
+    ],
+  });
 }
 
 module.exports = {
@@ -106,5 +135,6 @@ module.exports = {
   regional_chapters,
   learn_something_else,
   faqs,
-  newbie_advice
+  newbie_advice,
+  educational_materials,
 };
