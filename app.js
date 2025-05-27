@@ -104,11 +104,16 @@ app.action("faqs", async ({ ack, say }) => {
   theActions.faqs(say);
 });
 
-
-app.action("newbie_advice", async({ack, say}) => {
+app.action("newbie_advice", async ({ ack, say }) => {
   await ack();
   theActions.newbie_advice(say);
-  })
+});
+
+app.action("educational_materials", async ({ ack, say }) => {
+  await ack();
+  theActions.educational_materials(say);
+});
+
 //****************************************** */
 
 // When a user joins the team, the bot sends a DM to the newcommer asking them how they would like to contribute
@@ -131,8 +136,7 @@ app.message(/outreachy/i, async ({ message, say, logger }) => {
   outreachyPrompt.outreachyMessage(message, say, logger);
 });
 
-
-// Sends CHAOSS Meeting Notes Link  
+// Sends CHAOSS Meeting Notes Link
 const meetingNotesLink = process.env.MEETING_NOTES_LINK;
 
 app.message(/(!meeting|!notes)/i, async ({ message, say }) => {
@@ -142,7 +146,6 @@ app.message(/(!meeting|!notes)/i, async ({ message, say }) => {
     await say(`Here is the link to the meeting notes: <${meetingNotesLink}>`);
   }
 });
-
 
 // *******************************DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT************/
 /*
