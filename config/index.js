@@ -1,5 +1,5 @@
 const config = {
-  workspaceUrl: "https://slackbottest-mgq4853.slack.com",
+  workspaceUrl: "https://chaoss-workspace.slack.com",
   educationUrl: "https://chaoss.moodlecloud.com/my",
   pocs: {
     education: "U051Y6PHQ3H",
