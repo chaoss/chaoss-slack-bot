@@ -14,7 +14,7 @@ const {
   broadcastMessage,
   previewBroadcast,
 } = require("./components/broadcast");
-const { isWorkspaceAdmin } = require("./utils/adminValidator");
+const { isWorkspaceOwner } = require("./utils/adminValidator");
 
 const dotenv = require("dotenv");
 
@@ -187,11 +187,11 @@ app.command("/broadcast", async ({ command, ack, client, logger, respond }) => {
       `Broadcast initiated by user ${command.user_id} (@${command.user_name}) | trigger_id: ${command.trigger_id}) | message: "${command.text}"`
     );
 
-    const isAdmin = await isWorkspaceAdmin(client, command.user_id);
+    const isOwner = await isWorkspaceOwner(client, command.user_id);
 
-    if (!isAdmin) {
+    if (!isOwner) {
       await respond({
-        text: "Sorry, you are not authorised to use this command",
+        text: "Sorry, you are not authorised to use this command. Contact a workspace owner for assistance.",
         response_type: "ephemeral",
       });
       return;
