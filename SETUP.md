@@ -98,6 +98,34 @@ After creating your app, you will see the options to add new function to your ap
 *   Example:
     ![image](https://github.com/peculiaruc/peculiaruc.github.io/assets/35475543/3462851d-7ccd-476e-9c3d-f0dcaa7d7458)
 
+## Setting up Slash Commands
+
+The CHAOSS Slack Bot uses slash commands for certain administrative functions like broadcasting messages. To configure slash commands:
+
+*   Go to [https://api.slack.com/apps/](https://api.slack.com/apps/) and select your app
+*   Click on **Slash Commands** in the left sidebar
+*   Click on **Create New Command**
+*   Fill in the command details:
+    - **Command**: `/broadcast` (or your desired command name)
+    - **Short Description**: Brief description of what the command does
+    - **Usage Hint**: How users should format their input (e.g., `[message]`)
+*   **Important**: Check the **"Escape channels, users, and links sent to your app"** option to ensure proper handling of mentions and links
+*   Click **Save**
+*   Repeat for additional commands
+
+The CHAOSS bot currently uses these slash commands:
+- `/broadcast` - Send a broadcast message to all workspace users (admin only)
+- `/broadcast-preview` - Preview how a broadcast message will look
+
+## Reinstalling the App
+
+After configuring slash commands or making other configuration changes:
+
+*   Click on **Install App** in the left sidebar
+*   Click **Reinstall to Workspace** to update your app with the new slash command configuration
+*   Authorize the app again when prompted
+
+
 ## Attribution
 
 Adapted from [Getting started with Bolt for JavaScript](https://slack.dev/bolt-js/tutorial/getting-started).
