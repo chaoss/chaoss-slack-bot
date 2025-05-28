@@ -8,9 +8,13 @@ const {
   chaossAfricaInfo,
   joinChaossAfrica,
 } = require("./components/chaossAfrica");
-
 const joinTeam = require("./components/joinTeam");
 const memberJoinChannel = require("./components/joinChannel");
+const {
+  broadcastMessage,
+  previewBroadcast,
+} = require("./components/broadcast");
+const { isWorkspaceAdmin } = require("./utils/adminValidator");
 
 const dotenv = require("dotenv");
 
@@ -129,14 +133,12 @@ app.event("member_joined_channel", async ({ event, client, logger }) => {
   joinChaossAfrica(event, client, logger);
 });
 
-// ************************************************************************************************//
-
 // *************Send message about outreachy**********/
 app.message(/outreachy/i, async ({ message, say, logger }) => {
   outreachyPrompt.outreachyMessage(message, say, logger);
 });
 
-// Sends CHAOSS Meeting Notes Link
+// *************Sends CHAOSS Meeting Notes Link**********/
 const meetingNotesLink = process.env.MEETING_NOTES_LINK;
 
 app.message(/(!meeting|!notes)/i, async ({ message, say }) => {
@@ -147,41 +149,83 @@ app.message(/(!meeting|!notes)/i, async ({ message, say }) => {
   }
 });
 
-// *******************************DIRECT MESSAGE - ONE TIME  ANNOUNCEMENT************/
-/*
-let usersStore = {};
+// *************Sends Broadcast Message**********/
+app.command(
+  "/broadcast-preview",
+  async ({ command, ack, client, logger, respond }) => {
+    await ack();
 
-app.message('survey-CHAOSS', async ({ client, logger }) => {
-  // Call the users.list method using the WebClient
-  const result = await client.users.list();
-  saveUsers(result.members);
-  try {
-    for (let i = 0; i < userId.length; i++) {
-      await client.chat.postMessage({
-        channel: userId[i],
-        text: `Hello there! We recently launched a community survey to get your feedback on how to make our community more welcoming and inclusive. If you have considered yourself part of the community, we would love you to share your thoughts and experiences by completing this survey: https://chaossproject.limesurvey.net/835156?lang=en
- Thank you`,
+    try {
+      if (!command.text) {
+        await respond({
+          text: "Please provide a message to preview",
+          response_type: "ephemeral",
+        });
+        return;
+      }
+
+      await previewBroadcast(client, logger, command.user_id, command.text);
+      await respond({
+        text: "Preview sent. Check your DMs to see how the message will look.",
+        response_type: "ephemeral",
       });
+    } catch (error) {
+      await respond({
+        text: "Failed to send preview. Please try again.",
+        response_type: "ephemeral",
+      });
+      logger.error("Preview failed:", error);
     }
+  }
+);
+
+app.command("/broadcast", async ({ command, ack, client, logger, respond }) => {
+  await ack();
+
+  try {
+    logger.info(
+      `Broadcast initiated by user ${command.user_id} (@${command.user_name}) | trigger_id: ${command.trigger_id}) | message: "${command.text}"`
+    );
+
+    const isAdmin = await isWorkspaceAdmin(client, command.user_id);
+
+    if (!isAdmin) {
+      await respond({
+        text: "Sorry, you are not authorised to use this command",
+        response_type: "ephemeral",
+      });
+      return;
+    }
+
+    if (!command.text) {
+      await respond({
+        text: "Please provide a message to broadcast. Use /broadcast-preview first to see how it will look.",
+        response_type: "ephemeral",
+      });
+      return;
+    }
+
+    const totalSent = await broadcastMessage(client, logger, {
+      message: command.text,
+      triggerId: command.trigger_id,
+      skipBots: true,
+      skipInactive: true,
+      chunkSize: 50,
+      delayMs: 1000,
+    });
+
+    await respond({
+      text: `Broadcast completed successfully. Sent to ${totalSent} users.`,
+      response_type: "ephemeral",
+    });
   } catch (error) {
-    logger.error(error);
+    await respond({
+      text: "Failed to send broadcast message. Please try again.",
+      response_type: "ephemeral",
+    });
+    logger.error("Broadcast failed:", error);
   }
 });
-
-// Put users into the JavaScript object
-let userId = [];
-
-function saveUsers(usersArray) {
-  usersArray.forEach(function (user) {
-    // Key user info on their unique user ID
-    userId.push(user['id']);
-
-    // Store the entire user object (you may not need all of the info)
-    usersStore[userId] = user;
-    // console.log(userId);
-  });
-}
-*/
 
 (async () => {
   await app.start(process.env.PORT || 3000);
