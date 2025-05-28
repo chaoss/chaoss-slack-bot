@@ -10,4 +10,16 @@ async function isWorkspaceAdmin(client, userId) {
   }
 }
 
-module.exports = { isWorkspaceAdmin };
+async function isWorkspaceOwner(client, userId) {
+  try {
+    const userInfo = await client.users.info({
+      user: userId,
+    });
+    return userInfo.user.is_owner;
+  } catch (error) {
+    console.error("Error checking owner status:", error);
+    return false;
+  }
+}
+
+module.exports = { isWorkspaceAdmin, isWorkspaceOwner };
