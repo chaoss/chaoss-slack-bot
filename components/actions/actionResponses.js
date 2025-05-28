@@ -106,12 +106,13 @@ async function educational_materials(say) {
         text: {
           type: "mrkdwn",
           text: `You clicked *Access Educational Materials*\n
-Welcome to CHAOSS Education! This platform contains a variety of learning resources to help you:
-• Learn Git and GitHub basics
-• Understand open source contribution
-• Master development tools and practices
-• Work with community health metrics\n
-Access the materials here: ${config.educationUrl}`,
+Explore CHAOSS Education - your gateway to comprehensive learning resources designed to help you master open source community health analytics:
+
+• *Welcome to Open Source 101* - Perfect for beginners
+• *All About CHAOSS* - Understanding our mission and methodology
+• *CHAOSS Practitioner Guides* - Hands-on implementation guidance
+• *CHAOSS Software Tools* - Technical resources and tutorials\n
+🎓 Access all materials here: ${config.educationUrl}`,
         },
       },
       {
