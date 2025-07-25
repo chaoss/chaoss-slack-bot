@@ -55,7 +55,6 @@ async function sendEducationalMaterials(message, client, logger) {
       text: `Hello! I noticed you introduced yourself in the newcomers channel. Here are our educational materials: ${config.educationUrl}`,
     });
   } catch (error) {
-    console.log(error);
     logger.error(error);
   }
 }
