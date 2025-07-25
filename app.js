@@ -15,6 +15,7 @@ const {
   previewBroadcast,
 } = require("./components/broadcast");
 const { isWorkspaceOwner } = require("./utils/adminValidator");
+const { channels } = require("./config");
 
 const dotenv = require("dotenv");
 
@@ -38,6 +39,14 @@ app.message(/newbie/i, async ({ message, client, logger }) => {
 //This responds to a member when they  type africa in any channel where the bot is present
 app.message(/africa-info/i, async ({ message, client, logger }) => {
   chaossAfricaInfo(message, client, logger);
+});
+
+// This responds to a member when they type "my name" in the newcomers channel with educational materials DM
+app.message(/my name/i, async ({ message, client, logger }) => {
+  // Check if the message is in the newcomers channel
+  if (message.channel === channels.newcomers) {
+    newbie.sendEducationalMaterials(message, client, logger);
+  }
 });
 
 // handle the button click and show the responses
