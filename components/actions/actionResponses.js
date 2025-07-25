@@ -1,4 +1,5 @@
 const config = require("../../config");
+const { getEducationalMaterialsBlocks } = require("../newbie");
 
 const { channels, pocs } = config;
 
@@ -100,29 +101,10 @@ async function newbie_advice(say) {
 
 async function educational_materials(say) {
   return await say({
-    blocks: [
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `You clicked *Access Educational Materials*\n
-Explore CHAOSS Education - your gateway to comprehensive learning resources designed to help you master open source community health analytics:
-
-• *Welcome to Open Source 101* - Perfect for beginners
-• *All About CHAOSS* - Understanding our mission and methodology
-• *CHAOSS Practitioner Guides* - Hands-on implementation guidance
-• *CHAOSS Software Tools* - Technical resources and tutorials\n
-🎓 Access all materials here: ${config.educationUrl}`,
-        },
-      },
-      {
-        type: "section",
-        text: {
-          type: "mrkdwn",
-          text: `Note: You'll need to create a free account to access the content. If you have any questions, feel free to ask in <#${channels.newcomers}> or reach out to <@${pocs.education}>.`,
-        },
-      },
-    ],
+    blocks: getEducationalMaterialsBlocks(
+      "You clicked *Access Educational Materials*"
+    ),
+    text: `You clicked Access Educational Materials. Explore CHAOSS Education at ${config.educationUrl}`,
   });
 }
 
